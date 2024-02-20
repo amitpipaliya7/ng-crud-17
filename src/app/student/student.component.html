@@ -1,0 +1,302 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" (click)="logo()" style="cursor: pointer;">Student Form</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <form class="d-flex">
+            <select (change)="onSelect($event)">
+                <option value="">-Menu-</option>
+                <!-- <option value="myprofile">My Profile</option> -->
+                <option value="changepassword">Change Password</option>
+                <option value="logout">Log out</option>
+              </select> 
+
+            <button type="button">My profile</button>
+            <!-- <div title="My Profile">
+                <svg (click)="myProfile()" style="cursor: pointer; "   xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+            </div> -->
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+    <div class="container">
+        <form [formGroup]="studentForm" (ngSubmit)="submitData()" class="formclass">
+            <select formControlName="status" name="status" class="status" ngModel [(ngModel)]="statusNg">
+                <option  value="">Please select</option>
+                <option  value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+            </select>
+            <span *ngIf="f.status?.invalid && f.status.touched" style="color: red">Please select</span>
+            <span *ngIf="submitted" style="color: red">Please select</span>
+            <input class="in" type="text" formControlName="firstname" placeholder="Enter Firstname" required ngModel [(ngModel)]="firstnameNg" (input)="onFirstNameInputChange($event)">
+            <span *ngIf="submitted " style="color: red">invalid First Name</span>
+            <span *ngIf=" f.firstname?.invalid && f.firstname?.touched" style="color: red">invalid First Name</span>
+            <br/>
+            <br/>
+            <input class="in" type="text" formControlName="lastname" placeholder="Enter Lastname"  ngMode [(ngModel)]="lastnameNg" (input)="onLastNameInputChange($event)">
+            <span *ngIf="f.lastname?.invalid && f.lastname?.touched || submitted" style="color: red">invalid Last Name</span>
+            <span *ngIf="submitted" style="color: red">invalid Last Name</span>
+            <br/>
+            <br/>
+            <input class="in" type="number" formControlName="age"  placeholder="Enter Age" ngModel  [(ngModel)]="ageNg">
+            <span *ngIf="f.age?.invalid && f.age?.touched" style="color: red">invalid Age</span>
+            <span *ngIf="submitted" style="color: red">invalid Age</span>
+            <br/>
+            <br/>
+            <!-- <input class="in" type="text" formControlName="email"  placeholder="Enter Email"  ngModel [(ngModel)]="emailNg">
+            <span *ngIf="submitted" style="color: red">invalid Email</span>
+            <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span> -->
+        
+            <input class="in " type="text" formControlName="email"  placeholder="Enter Email" ngModel [(ngModel)]="emailNg" (input)="checkForDuplicate()">
+            <span *ngIf="submitted" style="color: red">invalid Email</span>
+            <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
+            <br/>
+            <br/>
+            
+            <!-- <button type="button" class="btn btn-primary"  (click)="addEmail()">Add more email</button>
+            <div formArrayName="emailAnother">
+                <ng-container *ngFor="let e of studentForm.get('emailAnother')['controls'] let i=index">
+                    <input class="inputPhone" type="text" formControlName="{{i}}"  placeholder="Enter Another email" #emailAnother (input)="checkForDuplicate()">
+                    <span *ngIf="submitted" style="color: red">invalid Email</span>
+                    <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid Email</span>    
+                    <button type="button" (click)="removeEmail(i)" class="btn btn-danger">Remove</button>
+                </ng-container>
+            </div> -->
+            <br/>
+            <br/>
+                <!-- <input class="inputPhone" type="text" (input)="onInputChange($event)" formControlName="phnoPrime" placeholder="Enter Phone no."
+                maxlength="10" minlength="10" ngModel [(ngModel)]="phnoPrimeNg">
+                <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
+                <span *ngIf="submitted" style="color: red">invalid Phone number</span> -->
+        
+                <input class="in" type="text" (input)="onInputChange($event)" formControlName="phnoPrime" placeholder="Enter Phone no."
+                 maxlength="10" minlength="10" [(ngModel)]="phnoPrimeNg">
+                <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
+                <span *ngIf="submitted" style="color: red">invalid Phone number</span>
+            <br/>
+            <br/>
+            
+        
+            <!-- <button type="button" class="btn btn-primary" (click)="addPhone()" >Add more phone no</button>
+            <div formArrayName="phno">
+                <ng-container *ngFor="let ph of studentForm.get('phno')['controls']; let i = index">
+                <input class="inputPhone" type="text" (input)="onInputChange($event)" formControlName="{{i}}" placeholder="Enter another phone no." maxlength="10" minlength="10">
+                <span *ngIf="f.phno?.invalid && f.phno?.touched" style="color: red">invalid Phone number</span>
+                <span *ngIf="submitted" style="color: red">invalid Phone number</span>
+                <button type="button" (click)="removePhone(i)" class="btn btn-danger">Remove</button>
+                </ng-container>
+            </div> -->
+        
+        
+            
+            <br/>
+            <br/>
+        
+        
+            <input class="in" type="text" (input)="onInputChange($event)" formControlName="pincode" placeholder="Enter Pincode" maxlength="6" minlength="6"  ngModel [(ngModel)]="pincodeNg">
+            <span *ngIf="f.pincode?.invalid && f.pincode?.touched" style="color: red">invalid Pincode </span>
+            <span *ngIf="submitted" style="color: red">invalid Pincode </span>
+            <br/>
+            <br/>
+
+            <!-- country -->
+            <div>
+                <select  name="country" class="status" (change)="selectCountry($event)" formControlName="country" >
+                    <option value="">--Select country--</option>
+                    <option  value="India">India</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Shrilanka">Shrilanka</option>
+                </select>
+                <span *ngIf="f.country.invalid && f.country.touched" style="color: red;">Please select country</span>
+                <span *ngIf="submitted" style="color: red">Please select country</span>
+
+                <div [ngClass]="{ 'disabled-div': stateDisable }" >
+                    <select  name="state" class="status"  formControlName="state">
+                        <option value="">-Select state-</option>
+                        <option *ngFor="let states of allState" [value]="states" >{{ states }}</option>
+                    </select>
+                </div>
+                <span *ngIf="f.state.invalid && f.state.touched" style="color: red;">Please select state</span>
+                <span *ngIf="submitted" style="color: red">Please select state</span>
+
+            </div>
+            <br/>
+
+            <!-- document  -->
+            <select  name="document" class="status" (change)="open($event)">
+                <option >Please select</option>
+                <option  value="pdf">PDF</option>
+                <option value="png">PNG</option>
+            </select>
+
+                <input type="file" formControlName="document" (click)="uploadDocument(studentForm.controls.document.value)" 
+                [(ngModel)]="documentNg" accept="{{acceptedFileTypes}}" [ngStyle]="{'pointer-events': documentBtnDesable ? 'none' : 'auto', 'opacity': documentBtnDesable ? 0.5 : 1}"> 
+                <span *ngIf="f.document.invalid && f.document.touched" style="color: red;">Please select document</span>
+                <span *ngIf="submitted" style="color: red;">Please select document</span>
+            <br/>
+            <br/>
+            <textarea class="te" cols="30" formControlName="address" rows="5" placeholder="Enter Address"  ngModel [(ngModel)]="addressNg" (input)="onAddressInputChange()"></textarea>
+            <span *ngIf="f.address?.invalid && f.address?.touched" style="color: red">invalid Address</span>
+            <span *ngIf="submitted" style="color: red">invalid Address</span>
+        
+            <br/>
+            <br/>
+            <input type="checkbox" formControlName="checkbox" id="checkId" [value]="checked" (click)="checkboxClick()" ><span>Confirm</span>
+            <br/>
+            <span *ngIf="f.checkbox.invalid && f.checkbox.touched" style="color: red">Please checked the box</span>
+            <br/>       
+            <br/>
+            <ng-container *ngIf="insert else update">
+                <button  class="btn btn-success" type="submit" >Submit</button>
+            </ng-container>
+        
+            <ng-template #update>
+                <!-- <button  type="button" (click)="updateData()" class="btn btn-success">Update</button> -->
+                <button  type="button" (click)="cancel()" class="btn btn-danger">Cancel</button>
+            </ng-template>
+          
+        </form>
+
+        <ng-container *ngIf="searchByName ">
+            <input class="in" type="text" placeholder="Search by name" [(ngModel)]=searchValueByName >
+        </ng-container >
+        <ng-container  *ngIf="searchByEmail">
+            <input class="in" type="text" placeholder="Search by email" [(ngModel)]=searchValueByEmail>
+        </ng-container>
+        <ng-container  *ngIf="searchByPhone">
+            <input class="in" type="text" placeholder="Search by phone no." [(ngModel)]=searchValueByPhone >
+        </ng-container>
+        <select name="searchDrop" (change)="onSelectSearch($event)">
+            <option value="pleaseselect"> - Please select -</option>
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+        </select>
+        <br/>
+        <br/>
+        <div class="cav">
+            <div class="">
+                <table class="table table-striped table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Id</th>
+                            <th>Mr/Mrs</th>
+                            <th  (click)="sort('id')" style="width: 170px;"> Full name <i class="sa fa-sort"  style="float: right; margin-top: 4px;"></i></th>
+                            <!-- <th>Lastname</th> -->
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phone no</th>
+                            <th>Pincode</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>Address</th>
+                            <th>Action</th>    
+                            <th></th>
+                            <th><input type="checkbox" (change)="disableAll($event)"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody [ngStyle]="{'pointer-events': isTableDisabled ? 'none' : 'auto', 'opacity': isTableDisabled ? 0.5 : 1}" *ngFor="let std of studentData 
+                         let i = index ">
+                        <tr>
+                            <td>{{i}}</td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.id}}</td>    
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.status}}</td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.firstname +' '+ std.lastname | titlecase}}</td>
+                            <!-- <td>{{std.firstname | titlecase}} {{std.lastname | titlecase}}</td> -->
+                            <!-- <td>{{std.lastname}}</td> -->
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.age}}</td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.email}} <br/></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.phnoPrime}}</td>  
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.pincode}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.country}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.state}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.address }}</td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-danger" (click)="deleteBtn(std.id)">Delete</Button></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-success" (click)="editBtn(std)">Edit</Button></td>
+                            <td><input type="checkbox" (change)="disableCheckboxClick($event, std.id)" ></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <!-- <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls> -->
+                
+                <!-- <select (change)="onTableSizeChange($event)">
+                    <option *ngFor="let size of tableSizes"> {{size}}</option>
+                </select> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="card-body p-4 p-lg-5 text-black">
+  
+                <form >
+                    
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <!-- <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i> -->
+                    <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Student form</h5>
+
+           
+                  <div class="form-outline mb-4">
+                    <select formControlName="status" name="status" class="status" ngModel [(ngModel)]="statusNg">
+                        <option  value="">Please select</option>
+                        <option  value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                    </select>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">First name</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">Last name</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form2Example17" class="form-control form-control-lg" type="text"/>
+                    <label class="form-label" for="form2Example17">Email address</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form2Example27" class="form-control form-control-lg" type="text" />
+                    <label class="form-label" for="form2Example27">Password</label>
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
+                  </div>
+      
+                </form>
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,129 @@
+{
+  "student": [
+    {
+      "id": "66c1",
+      "status": "Mr",
+      "firstname": "jaguu",
+      "lastname": "ofMangu",
+      "age": 12,
+      "email": "aaa@aa.com",
+      "emailAnother": [],
+      "phnoPrime": "1212121212",
+      "phno": [],
+      "pincode": "121212",
+      "country": "India",
+      "state": "Karnataka",
+      "document": "C:\\fakepath\\Amit Work.txt",
+      "address": "aaaaa",
+      "checkbox": true
+    },
+    {
+      "id": "3f9e",
+      "status": "Mr",
+      "firstname": "maggu",
+      "lastname": "maggu",
+      "age": 12,
+      "email": "maggu@ma.com",
+      "emailAnother": [],
+      "phnoPrime": "1213435467",
+      "phno": [],
+      "pincode": "988989",
+      "country": "Nepal",
+      "state": "Province No. 1",
+      "document": "C:\\fakepath\\Amit Work.txt",
+      "address": "maggu",
+      "checkbox": true
+    },
+    {
+      "id": "ae42",
+      "status": "Mrs",
+      "firstname": "aaa",
+      "lastname": "aaa",
+      "age": 23232,
+      "email": "sdff@yg.com",
+      "emailAnother": [],
+      "phnoPrime": "3212343242",
+      "phno": [],
+      "pincode": "243242",
+      "country": "India",
+      "state": "Mizoram",
+      "document": "C:\\fakepath\\Amit Work.txt",
+      "address": "asasasa",
+      "checkbox": true
+    },
+    {
+      "id": "7dbe",
+      "status": "Mr",
+      "firstname": "asdasd",
+      "lastname": "sdfsdfsd",
+      "age": 3242,
+      "email": "dasd@weha.com",
+      "emailAnother": [],
+      "phnoPrime": "2132423423",
+      "phno": [],
+      "pincode": "423423",
+      "country": "Nepal",
+      "state": "Province No. 2",
+      "document": "C:\\fakepath\\Amit Work.txt",
+      "address": "sdgddfgg",
+      "checkbox": true
+    },
+    {
+      "status": "Mrs",
+      "firstname": "aaaaa",
+      "lastname": "aa",
+      "age": 3,
+      "email": "2aadf@dgad.com",
+      "emailAnother": [],
+      "phnoPrime": "3423423333",
+      "phno": [],
+      "pincode": "234233",
+      "country": "Nepal",
+      "state": "Province No. 2",
+      "document": "C:\\fakepath\\angLogo.png",
+      "address": "aaaa",
+      "checkbox": true,
+      "id": "3cb8"
+    },
+    {
+      "id": "d20b",
+      "status": "Mr",
+      "firstname": "aaa",
+      "lastname": "aaa",
+      "age": 113,
+      "email": "aaa@ggwdejhevfhe.com",
+      "emailAnother": [
+        "ggjhg@dufgh.com",
+        "djhgkhsd@sduih.com"
+      ],
+      "phnoPrime": "2635272342",
+      "phno": [],
+      "pincode": "213232",
+      "country": "India",
+      "state": "Nagaland",
+      "document": "C:\\fakepath\\Amit Work.txt",
+      "address": "sssdfdfdf",
+      "checkbox": true
+    }
+  ],
+  "data": [
+    {
+      "id": "9125",
+      "name": "tyhtrtrrt",
+      "email": "rtrthrthtrh@gmail.com",
+      "password": "1234567890"
+    },
+    {
+      "id": "d3ee",
+      "name": "sasdsd",
+      "email": "dadas@whd.com",
+      "password": "1212323232"
+    },
+    {
+      "id": "883a",
+      "name": "name",
+      "email": "name@name.com",
+      "password": "1221211221"
+    }
+  ]
+}
