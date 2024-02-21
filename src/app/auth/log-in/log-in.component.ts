@@ -25,9 +25,6 @@ export class LogInComponent {
 
   constructor(private authSer : AuthService, private router : Router, private toastr: ToastrService){
   }
-  ngOnInit(): void {
-    
-  }
 
   emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
 
@@ -83,8 +80,8 @@ export class LogInComponent {
        
         // console.log("sUCCESS");
         this.toastr.success("Login succesfully")
-        // this.router.navigate(['/student', id])
-        this.router.navigate(['/student'])
+        this.router.navigate(['/student', id])
+        // this.router.navigate(['/student'])
       
         const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
         // localData={email: emailLogin, password:passwordLogin, id:id};

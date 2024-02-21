@@ -18,4 +18,20 @@ export class AuthService {
     return this.http.post(this.url, data)
   }
 
+   //My Profile
+   GetMyProfileApi(id:any){
+    // let editUserID=`${this.url}/${id}`
+    return this.http.get("http://localhost:3000/data/" + id)
+  }
+
+  changePasswordGetApi(id:any){
+    let getapiUrl = `${this.url}/${id}`
+    return this.http.get(getapiUrl)
+  }
+
+  changePasswordUpdateApi(id:any, name:any, email:any, confirmpassword:any){
+    const data = { name:name ,email :email , password: confirmpassword };
+    return this.http.put("http://localhost:3000/data/"+id, data);
+  }
+
 }

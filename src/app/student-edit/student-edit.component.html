@@ -1,1 +1,164 @@
-<p>student-edit works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Student Form</a>
+     
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">    
+        </ul>
+   
+      </div>
+    </div>
+  </nav>
+  
+<section  style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="card-body p-4 p-lg-5 text-black">
+  
+                <form  [formGroup]="studentForm" (ngSubmit)="updateData()">
+                    
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Edid your student form</span>
+                  </div>
+           
+                  <div class="form-outline mb-4">
+                    <select formControlName="status" name="status" class="status" ngModel [(ngModel)]="updatedUser.status" #statusView>
+                        <option  value="">Please select</option>
+                        <option  value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                    </select>
+                     <span *ngIf="f.status?.invalid && f.status.touched" style="color: red">Please select</span>
+                     <span *ngIf="submitted" style="color: red">Please select</span>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example17">First name</label>
+                    <input id="form2Example17" class="form-control form-control-lg" type="text" formControlName="firstname" placeholder="Enter Firstname" required ngModel [(ngModel)]="updatedUser.firstname" #firstnameView />
+                    <span *ngIf="submitted " style="color: red">invalid First Name</span>
+                    <span *ngIf=" f.firstname?.invalid && f.firstname?.touched" style="color: red">invalid First Name</span>
+                  </div>
+                  
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example17">Last name</label>
+                    <input id="form2Example17" class="form-control form-control-lg" type="text" formControlName="lastname" placeholder="Enter Lastname"  ngMode [(ngModel)]="updatedUser.lastname" #lastnameView/>
+                    <span *ngIf="f.lastname?.invalid && f.lastname?.touched || submitted" style="color: red">invalid Last Name</span>
+                    <span *ngIf="submitted" style="color: red">invalid Last Name</span>
+                  </div>
+                  
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example17" >Age</label>
+                    <input  id="form2Example17" class="form-control form-control-lg" type="number" formControlName="age"  placeholder="Enter Age" ngModel  [(ngModel)]="updatedUser.age" #ageView/>
+                    <span *ngIf="f.age?.invalid && f.age?.touched" style="color: red">invalid Age</span>
+                    <span *ngIf="submitted" style="color: red">invalid Age</span>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example27">Email address</label>
+                    <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" formControlName="email"  placeholder="Enter Email"  ngModel [(ngModel)]="updatedUser.email" #emailView/>
+                    <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
+                    <span *ngIf="submitted" style="color: red">invalid Email</span>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <button type="button" class="btn btn-primary"  (click)="addEmail()">Add more email</button>
+                    <!-- <div formArrayName="emailAnother">
+                        <ng-container *ngFor="let e of studentForm.get('emailAnother')['controls'] let i=index">
+                            <input class="inputPhone" type="text" formControlName="{{i}}"  placeholder="Enter Another email" #emailAnother (input)="checkForDuplicate()">
+                            <span *ngIf="submitted" style="color: red">invalid Email</span>
+                            <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid Email</span>    
+                            <button type="button" (click)="removeEmail(i)" class="btn btn-danger">Remove</button>
+                        </ng-container>
+                    </div> -->
+                  </div>
+
+             
+            
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example27">Phone number</label>
+                    <input class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="phnoPrime" placeholder="Enter Phone no."
+                    maxlength="10" minlength="10" [(ngModel)]="updatedUser.phnoPrime" #phonePrimeView/>
+                    <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
+                    <span *ngIf="submitted" style="color: red">invalid Phone number</span>
+                  </div>
+                
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example27">Pincode  </label>
+                    <input class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="pincode" placeholder="Enter Pincode" maxlength="6" minlength="6" 
+                    ngModel [(ngModel)]="updatedUser.pincode" #pincodeView/>
+                    <span *ngIf="f.pincode?.invalid && f.pincode?.touched" style="color: red">invalid Pincode </span>
+                    <span *ngIf="submitted" style="color: red">invalid Pincode </span>
+                  </div>
+                   <!-- country -->
+                  <div class="form-outline mb-4 ">
+                        <select  name="country" class="status" (change)="selectCountry($event)" formControlName="country" 
+                        ngModel [(ngModel)]="updatedUser.country" #countryView >
+                            <option value="">--Select country--</option>
+                            <option  value="India">India</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Shrilanka">Shrilanka</option>
+                        </select>
+                        <span *ngIf="f.country.invalid && f.country.touched" style="color: red;">Please select country</span>
+                        <span *ngIf="submitted" style="color: red">Please select country</span>
+        
+                        <div [ngClass]="{ 'disabled-div': stateDisable }" >
+                            <select  name="state" class="status"  formControlName="state" 
+                            ngModel [(ngModel)]="updatedUser.state" #stateView>
+                                <option value="">-Select state-</option>
+                                <option *ngFor="let states of allState" [value]="states" >{{ states }}</option>
+                            </select>
+                            <span *ngIf="f.state.invalid && f.state.touched" style="color: red;">Please select state</span>
+                            <span *ngIf="submitted" style="color: red">Please select state</span>
+                        </div>
+                  </div>
+                  <!-- document  -->
+
+                  <div class="form-outline mb-4">
+                    <select  name="document" class="status" (change)="open()">
+                        <option >Please select</option>
+                        <option  value="pdf">PDF</option>
+                        <option value="png">PNG</option>
+                    </select>
+    
+                    <input type="file" [disabled]="documentBtnDesable" formControlName="document" (click)="uploadDocument(studentForm.controls.document.value)" 
+                    [(ngModel)]="updatedUser.document" #documentView> 
+                    <span *ngIf="f.document.invalid && f.document.touched" style="color: red;">Please select document</span>
+                    <span *ngIf="submitted" style="color: red;">Please select document</span>
+                  </div>
+                  
+
+                  <div class="form-outline mb-4">
+                    <textarea class="form-control" cols="30" formControlName="address" rows="5" placeholder="Enter Address"  ngModel [(ngModel)]="updatedUser.address" #addressView></textarea>
+                    <span *ngIf="f.address?.invalid && f.address?.touched" style="color: red">invalid Address</span>
+                    <span *ngIf="submitted" style="color: red">invalid Address</span>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input class="form-check-input" type="checkbox" formControlName="checkbox" id="checkId" [value]="checked" (click)="checkboxClick()">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Confirm
+                    </label>
+                    <span *ngIf="f.checkbox.invalid && f.checkbox.touched" style="color: red">Please checked the box</span> 
+                  </div>
+
+                  
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
+                    <button class="btn btn-danger btn-lg btn-block" type="button" (click)="cancelEdit()">Cancel</button>
+
+                  </div>
+      
+                </form>
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+</section>

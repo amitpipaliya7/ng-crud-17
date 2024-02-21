@@ -11,6 +11,10 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { NameFilterPipe } from '../pipe/name-filter.pipe';
+import { EmailFilterPipe } from '../pipe/email-filter.pipe';
+import { PhoneFilterPipe } from '../pipe/phone-filter.pipe';
+import { AddressPipe } from '../pipe/address.pipe';
 
 @Component({
   selector: 'app-student',
@@ -20,7 +24,12 @@ import Swal from 'sweetalert2';
     FormsModule, 
     ReactiveFormsModule, 
     ToastrModule,
-    CommonModule
+    CommonModule,
+    NameFilterPipe,
+    EmailFilterPipe,
+    PhoneFilterPipe,
+    AddressPipe,
+    NgxPaginationModule
   ],
   providers:[StudentService, ToastrService],
   templateUrl: './student.component.html',
@@ -29,7 +38,7 @@ import Swal from 'sweetalert2';
 export class StudentComponent implements OnInit{
 
   
-  constructor (private studentSer : StudentService, private router : Router, private activatedRoute:ActivatedRoute,){ 
+  constructor (private studentSer : StudentService, private router : Router, private activatedRoute:ActivatedRoute,private toastr: ToastrService){ 
     // this.getData()
     // this.getDataOfUser()
 
@@ -71,8 +80,8 @@ export class StudentComponent implements OnInit{
     inputElement.value = numericValue;
   }
   // check = document.getElementById('checkId')
-  
-  
+
+
 
  
 
@@ -91,27 +100,6 @@ export class StudentComponent implements OnInit{
     
     // this.initializeModal();
     this.getData()
-
-  //   this.dropdownList = [
-  //     { item_id: 1, item_text: 'Mumbai' },
-  //     { item_id: 2, item_text: 'Bangaluru' },
-  //     { item_id: 3, item_text: 'Pune' },
-  //     { item_id: 4, item_text: 'Navsari' },
-  //     { item_id: 5, item_text: 'New Delhi' }
-  //   ];
-  //   this.selectedItems = [
-  //     { item_id: 3, item_text: 'Pune' },
-  //     { item_id: 4, item_text: 'Navsari' }
-  //   ];
-  //   this.dropdownSettings = {
-  //     singleSelection: false,
-  //     idField: 'item_id',
-  //     textField: 'item_text',
-  //     selectAllText: 'Select All',
-  //     unSelectAllText: 'UnSelect All',
-  //     itemsShowLimit: 3,
-  //     allowSearchFilter: true
-  //   };
 
   }
 
@@ -141,6 +129,7 @@ export class StudentComponent implements OnInit{
     age : new FormControl(null,[Validators.required, Validators.pattern('[0-9]+$')]),
     email : new FormControl(null,[Validators.required,Validators.pattern(this.emailPattern)]),
     emailAnother : new FormArray([]),
+    // emailAnother : new FormArray<any>([],[Validators.required,Validators.pattern(this.emailPattern)]),
     phnoPrime : new FormControl(null,[Validators.required, Validators.minLength(10),Validators.maxLength(10), Validators.pattern('[0-9]+$')]),
     phno : new FormArray([]),
     pincode : new FormControl(null,[Validators.required, Validators.pattern('[0-9]+$'), Validators.minLength(6),Validators.maxLength(6)]),
@@ -150,6 +139,10 @@ export class StudentComponent implements OnInit{
     address : new FormControl(null,[Validators.required]),
     checkbox : new FormControl(null,[Validators.required])
   })  
+
+  get emailAnotherGet(){
+    return this.studentForm.get('emailAnother') as FormArray
+  }
 
   get phnoget(){
     return this.studentForm.get('phno') as FormArray
@@ -180,7 +173,8 @@ export class StudentComponent implements OnInit{
 
 
   addEmail(){
-    (this.studentForm.get('emailAnother') as FormArray).push(new FormControl(''))
+    // (this.studentForm.get('emailAnother') as FormArray).push(new FormControl(''))
+    this.emailAnotherGet.push(new FormControl(''))
   }
   removeEmail(i:any){
     (this.studentForm.get('emailAnother') as FormArray).removeAt(i)
@@ -201,17 +195,17 @@ export class StudentComponent implements OnInit{
 
 
 
-  statusNg = ""
-  firstnameNg='' 
-  lastnameNg=''
-  ageNg=''
-  emailNg=''
+  statusNg:any 
+  firstnameNg:any 
+  lastnameNg:any
+  ageNg:any
+  emailNg:any
   // phnoNg;
-  phnoPrimeNg=''
-  pincodeNg=''
-  addressNg=''
-  idNg=''
-  documentNg=''
+  phnoPrimeNg:any
+  pincodeNg:any
+  addressNg:any
+  idNg:any
+  documentNg:any
 
   //validation
   get f (){
@@ -261,18 +255,18 @@ export class StudentComponent implements OnInit{
   onSelect(event:any){
     console.log(event.target.value)
 
-    // if(event.target.value == 'logout'){
-    //   this.router.navigateByUrl("/login")
-    //   this.toastr.success("You'r logout")
-    //   localStorage.removeItem('LoginData');
-    // }
-    // else if(event.target.value == 'myprofile'){
-    //   this.router.navigateByUrl("/studentprofile")
-    // }
-    // else if(event.target.value == 'changepassword'){
-    //   this.router.navigateByUrl("/changepassword")
-    //   this.router.navigate(["/changepassword",this.studentId])
-    // }
+    if(event.target.value == 'logout'){
+      this.router.navigateByUrl("/login")
+      this.toastr.success("You'r logout")
+      localStorage.removeItem('LoginData');
+    }
+    else if(event.target.value == 'myprofile'){
+      this.router.navigateByUrl("/studentprofile")
+    }
+    else if(event.target.value == 'changepassword'){
+      this.router.navigateByUrl("/changepassword")
+      this.router.navigate(["/changepassword",this.studentId])
+    }
   } 
 
 
@@ -318,28 +312,6 @@ export class StudentComponent implements OnInit{
     }
     
 
-
-
-    // this.submitted=true
-
-    // if(this.studentForm.invalid){
-    //   return 
-    // }
-    
-    // if(this.checked){
-    //   let data = {
-    //     ...this.studentForm.value
-    //   }
-    //   this.studentSer.postApi(data).subscribe(()=>{  
-    //     this.getData()
-    //     console.log(data.document);
-    //   })
-
-    //   this.submitted=false
-    //   // this.studentForm.reset()
-    // }
-    
-    // this.toastr.success('Submit succesfully');
     
   }
 
@@ -485,7 +457,7 @@ editBtn(data:any){
     confirmButtonText: "Yes, edit it!"
   }).then((result) => {
     if (result.isConfirmed) {
-      // this.router.navigate(['/studentedit',data.id])
+      this.router.navigate(['/studentedit',data.id])
       Swal.fire({
         title: "Edit page!",
         text: "Your able to edit the page.",
@@ -612,21 +584,6 @@ deleteBtn(id:any){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   logo(){
     Swal.fire({
       title: "Welcom to my website.",
@@ -646,6 +603,46 @@ deleteBtn(id:any){
 
 
 
+  myProfile(){
+    this.router.navigate(['/studentprofile', this.studentId])
+  }
 
 
+   //canDeactivate
+   onExit(){
+    if(this.statusNg || this.firstnameNg || this.lastnameNg || this.ageNg || this.emailNg || this.phnoPrimeNg || 
+      this.pincodeNg|| this.addressNg||this.documentNg){
+    return confirm("You have unsaved change. Do you really want to discard these change ?")
+  }
+  else{
+    return true;
+  }
+}
+
+
+//pagination 
+page:number = 1;
+count : number = 0;
+tableSize : number = 5;
+tableSizes : any = [5,10,15,20]
+
+// dataOfUserApi
+// getDataOfUser(){
+//   this.studentSer.getApiOfUser().subscribe((data)=>{
+//     this.dataOfUserApi = data
+//   })
+// }
+ 
+onTableDataChange(event:any){
+  this.page = event
+  // this.getDataOfUser()
+  this.getData()
+}
+
+  onTableSizeChange(event : any){
+  this.tableSize=event.target.value
+  this.page = 1
+  // this.getDataOfUser()
+  this.getData()
+}
 }
