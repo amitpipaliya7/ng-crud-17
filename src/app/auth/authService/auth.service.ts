@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, CanDeactivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { StudentComponent } from '../../student/student.component';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements CanDeactivate<StudentComponent>, CanActivate{
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private route:Router) { }
+
+
+
 
   url = "http://localhost:3000/data"
 
@@ -34,4 +40,23 @@ export class AuthService {
     return this.http.put("http://localhost:3000/data/"+id, data);
   }
 
+  Logggin = 'safdd'
+  isLoggin(){
+    return this.Logggin.length > 0
+  }
+
+  canDeactivate(component: StudentComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return component.onExit()
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    let token = window.localStorage.getItem("token")
+      if (token == null) {
+        this.route.navigate(['login'])
+        return false
+      }
+      else {
+        return true
+      }
+  }
 }

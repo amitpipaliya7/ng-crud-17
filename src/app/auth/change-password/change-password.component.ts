@@ -5,6 +5,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-change-password',
@@ -14,14 +15,15 @@ import { CommonModule } from '@angular/common';
     FormsModule, 
     ReactiveFormsModule, 
     ToastrModule,
-    CommonModule
+    CommonModule,
+    NgxSpinnerModule
   ],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss',
-  providers : [AuthService]
+  providers : [AuthService, NgxSpinnerService]
 })
 export class ChangePasswordComponent implements OnInit{
-  constructor(private activatedRoute : ActivatedRoute, private toastr: ToastrService){}
+  constructor(private activatedRoute : ActivatedRoute, private toastr: ToastrService,private spinner: NgxSpinnerService){}
   
   // localData = JSON.parse(localStorage.getItem("LoginData"))
   

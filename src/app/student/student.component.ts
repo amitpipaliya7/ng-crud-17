@@ -29,16 +29,18 @@ import { AddressPipe } from '../pipe/address.pipe';
     EmailFilterPipe,
     PhoneFilterPipe,
     AddressPipe,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule,
   ],
-  providers:[StudentService, ToastrService],
+  providers:[StudentService, ToastrService, NgxSpinnerService, HttpClientModule],
   templateUrl: './student.component.html',
   styleUrl: './student.component.scss',
 })
 export class StudentComponent implements OnInit{
 
   
-  constructor (private studentSer : StudentService, private router : Router, private activatedRoute:ActivatedRoute,private toastr: ToastrService){ 
+  constructor (private studentSer : StudentService, private router : Router, private activatedRoute:ActivatedRoute,private toastr: ToastrService,
+    private spinner: NgxSpinnerService){ 
     // this.getData()
     // this.getDataOfUser()
 
@@ -256,16 +258,23 @@ export class StudentComponent implements OnInit{
     console.log(event.target.value)
 
     if(event.target.value == 'logout'){
-      this.router.navigateByUrl("/login")
-      this.toastr.success("You'r logout")
-      localStorage.removeItem('LoginData');
+      this.spinner.show()
+      setTimeout(() => {
+        this.spinner.hide()
+        this.router.navigateByUrl("/login")
+        this.toastr.success("You'r logout")
+        localStorage.removeItem('token');  
+      }, 1000);
     }
     else if(event.target.value == 'myprofile'){
-      this.router.navigateByUrl("/studentprofile")
+      // this.router.navigateByUrl("/studentprofile")
     }
     else if(event.target.value == 'changepassword'){
-      this.router.navigateByUrl("/changepassword")
-      this.router.navigate(["/changepassword",this.studentId])
+      this.spinner.show()
+      setTimeout(() => {
+        this.spinner.hide()
+        this.router.navigate(["/changepassword",this.studentId])
+      }, 1000);
     }
   } 
 
@@ -297,11 +306,11 @@ export class StudentComponent implements OnInit{
                   studentFormEmail == studentFormEmailAnother 
          })
          if(datas){
-          // this.toastr.error("Email or phone number already exist or duplicate. Please try with another email")
+          this.toastr.error("Email or phone number already exist or duplicate. Please try with another email")
         }else{
          this.studentSer.postApi(data).subscribe((ele)=>{
           console.log(ele);
-          // this.toastr.success('Submit succesfully');
+          this.toastr.success('Submit succesfully');
           this.getData()
          })
         }
@@ -310,8 +319,6 @@ export class StudentComponent implements OnInit{
       this.submitted=false
       // this.studentForm.reset()
     }
-    
-
     
   }
 
@@ -457,12 +464,18 @@ editBtn(data:any){
     confirmButtonText: "Yes, edit it!"
   }).then((result) => {
     if (result.isConfirmed) {
-      this.router.navigate(['/studentedit',data.id])
-      Swal.fire({
-        title: "Edit page!",
-        text: "Your able to edit the page.",
-        icon: "success"
-      });
+
+      this.spinner.show()
+
+      setTimeout(() => {
+        this.spinner.hide()
+        this.router.navigate(['/studentedit',data.id])
+        Swal.fire({
+          title: "Edit page!",
+          text: "Your able to edit the page.",
+          icon: "success"
+        });
+      }, 2000); 
     }
   });
 }
@@ -565,14 +578,19 @@ deleteBtn(id:any){
     confirmButtonText: "Yes, delete it!"
   }).then((result) => {
     if (result.isConfirmed) {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
       this.studentSer.deleteApi(id).subscribe(()=>{
-          this.getData()
-      })
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success"
-      });
+        this.getData()
+    })
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+    }, 2000);
+     
     }
   });
 }  
@@ -604,13 +622,17 @@ deleteBtn(id:any){
 
 
   myProfile(){
-    this.router.navigate(['/studentprofile', this.studentId])
+    this.spinner.show()
+    setTimeout(() => {
+      this.spinner.hide()
+      this.router.navigate(['/studentprofile', this.studentId])
+    }, 2000);
   }
 
 
    //canDeactivate
    onExit(){
-    if(this.statusNg || this.firstnameNg || this.lastnameNg || this.ageNg || this.emailNg || this.phnoPrimeNg || 
+    if(this.statusNg  || this.firstnameNg || this.lastnameNg || this.ageNg || this.emailNg || this.phnoPrimeNg || 
       this.pincodeNg|| this.addressNg||this.documentNg){
     return confirm("You have unsaved change. Do you really want to discard these change ?")
   }

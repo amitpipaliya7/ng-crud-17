@@ -62,20 +62,6 @@
                     <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
                     <span *ngIf="submitted" style="color: red">invalid Email</span>
                   </div>
-
-                  <div class="form-outline mb-4">
-                    <button type="button" class="btn btn-primary"  (click)="addEmail()">Add more email</button>
-                    <!-- <div formArrayName="emailAnother">
-                        <ng-container *ngFor="let e of studentForm.get('emailAnother')['controls'] let i=index">
-                            <input class="inputPhone" type="text" formControlName="{{i}}"  placeholder="Enter Another email" #emailAnother (input)="checkForDuplicate()">
-                            <span *ngIf="submitted" style="color: red">invalid Email</span>
-                            <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid Email</span>    
-                            <button type="button" (click)="removeEmail(i)" class="btn btn-danger">Remove</button>
-                        </ng-container>
-                    </div> -->
-                  </div>
-
-             
             
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Phone number</label>

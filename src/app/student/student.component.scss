@@ -4,6 +4,10 @@
 // @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 
+// @import "../../../../node_modules/ngx-spinner/animations/ball-scale-multiple.css";
+
+
+
 // .button {
 //     margin: 10px;
 //     padding: 4px;
@@ -207,4 +211,8 @@ nav mat-select {
 .search-hover:hover {
   width: 300px;
   padding-left: 50px;
+}
+
+.space{
+  margin-left: 24px;
 }

@@ -23,7 +23,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LogInComponent {
 
-  constructor(private authSer : AuthService, private router : Router, private toastr: ToastrService){
+  constructor(private authSer : AuthService, private router : Router, private toastr: ToastrService){;
+    
   }
 
   emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
@@ -71,12 +72,15 @@ export class LogInComponent {
    
     this.authSer.getApi().subscribe((response)=>{
     let id : any
+    let email : any 
     let data:any=response
       data.find((ele:any)=>{
         id = ele.id
+        email = ele.email
         return data = ele.email===emailLogin && ele.password==passwordLogin
       })
       if(data){
+       console.log(email);
        
         // console.log("sUCCESS");
         this.toastr.success("Login succesfully")
@@ -86,7 +90,11 @@ export class LogInComponent {
         const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
         // localData={email: emailLogin, password:passwordLogin, id:id};
         // localStorage.setItem('LoginData', JSON.stringify(localData)); 
+        // const jwtToken = data.name
+
+        localStorage.getItem("token")
         localStorage.setItem('token', jwtToken);
+        // localStorage.setItem('token', JSON.stringify(email));
 
         // console.log(setlocal, " local data");
         

@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { StudentComponent } from '../student/student.component';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService implements CanDeactivate<StudentComponent>{
+export class StudentService{
 
   constructor(private http : HttpClient ) { }
  
@@ -47,7 +44,5 @@ export class StudentService implements CanDeactivate<StudentComponent>{
   }
 
 
-  canDeactivate(component: StudentComponent, currentRoute: ActivatedRouteSnapshot) {
-    return component.onExit() 
-  }
+
 }

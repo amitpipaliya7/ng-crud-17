@@ -75,7 +75,7 @@ export class SignUpComponent {
           let id = ele.id
           // this.toastr.success("Signup succesfull")
           // this.router.navigate(['/student',id])
-          this.router.navigate(['/student'])
+          this.router.navigate(['/student',id])
         }) 
         }
 

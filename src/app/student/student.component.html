@@ -1,3 +1,6 @@
+<ngx-spinner type="ball-scale-multiple">
+  <p style="font-size: 50px; font-weight: bold;">Loading....</p>
+</ngx-spinner>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" (click)="logo()" style="cursor: pointer;">Student Form</a>
@@ -23,9 +26,6 @@
       </div>
     </div>
   </nav>
-
-
-
 <section  style="background-color: #9A616D;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -47,6 +47,8 @@
                         <option  value="Mr">Mr</option>
                         <option value="Mrs">Mrs </option>
                     </select>
+                    <span *ngIf="f.status?.invalid && f.status.touched" style="color: red">Please select</span>
+                    <span *ngIf="submitted" style="color: red">Please select</span>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -70,43 +72,45 @@
                     <span *ngIf="submitted" style="color: red">invalid Age</span>
                   </div>
 
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example27">Email address</label>
+                  <label class="form-label" for="form2Example27">Email address</label>
+                  <div class="form-outline mb-4 d-flex">
                     <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" formControlName="email" ngModel [(ngModel)]="emailNg" (input)="checkForDuplicate()"/>
-                    <span *ngIf="submitted" style="color: red">invalid Email</span>
-                    <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
+                    <button type="button" class="btn btn-primary space"  (click)="addEmail()">Add more email</button>
                   </div>
+                  <span *ngIf="submitted" style="color: red">invalid Email</span>
+                  <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
 
                   <div class="form-outline mb-4">
-                    <button type="button" class="btn btn-primary"  (click)="addEmail()">Add more email</button>
                     <div formArrayName="emailAnother">
                         <ng-container *ngFor="let e of emailAnotherGet.controls; let i=index">
-                          <div class="form-outline mb-4">
-                            <input class=" form-control form-control-rg" type="text" formControlName="{{i}}"  #emailAnother (input)="checkForDuplicate()" placeholder="Enter another email.">
+                          <div class="form-outline mb-4 d-flex">
+                            <input class=" form-control form-control-lg" type="text" formControlName="{{i}}"  #emailAnother (input)="checkForDuplicate()" placeholder="Enter another email.">
                             <span *ngIf="submitted" style="color: red">invalid Email</span>
                             <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid Email</span>    
-                            <button type="button" (click)="removeEmail(i)" class="btn btn-danger">Remove</button>
+                            <button type="button" (click)="removeEmail(i)" class="btn btn-danger space">Remove</button>
                           </div>
                         </ng-container>
                     </div>
                   </div>
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example27">Phone number</label>
-                    <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="phnoPrime" 
+
+                  <label class="form-label" for="form2Example27">Phone number</label>
+                  <div class="form-outline mb-4 d-flex " >
+                    <input type="text" id="form2Example27" class="form-control form-control-lg " type="text" (input)="onInputChange($event)" formControlName="phnoPrime" 
                     maxlength="10" minlength="10" [(ngModel)]="phnoPrimeNg"/>
-                    <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
-                    <span *ngIf="submitted" style="color: red">invalid Phone number</span>
+                    <button type="button" class="btn btn-primary space"  (click)="addPhone()">Add more phone</button>
                   </div>
+                  <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
+                  <span *ngIf="submitted" style="color: red">invalid Phone number</span>
                   
-                  <div class="form-outline mb-4">
-                    <button type="button" class="btn btn-primary"  (click)="addPhone()">Add more phone</button>
+                  <div class="form-outline mb-4 ">
+                    <!-- <button type="button" class="btn btn-primary"  (click)="addPhone()">Add more phone</button> -->
                     <div formArrayName="emailAnother">
                         <ng-container *ngFor="let e of phnoget.controls; let i=index">
-                          <div class="form-outline mb-4">
-                            <input class=" form-control form-control-rg" type="text" formControlName="{{i}}"  #emailAnother (input)="checkForDuplicate()" placeholder="Enter another phone no.">
+                          <div class="form-outline mb-4 w-80 d-flex">
+                            <input class=" form-control form-control-lg" type="text" formControlName="{{i}}"  #emailAnother (input)="onInputChange($event)" placeholder="Enter another phone no.">
                             <span *ngIf="submitted" style="color: red">invalid phone no</span>
                             <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid phone no.</span>    
-                            <button type="button" (click)="removePhone(i)" class="btn btn-danger">Remove</button>
+                            <button type="button" (click)="removePhone(i)" class="btn btn-danger space">Remove</button>
                           </div>
                         </ng-container>
                     </div>
@@ -120,35 +124,36 @@
                     <span *ngIf="submitted" style="color: red">invalid Pincode </span>
                   </div>
                    <!-- country -->
-                  <div class="form-outline mb-4 ">
+                  <div class="form-outline mb-4 d-flex">
                         <select  name="country" class="status" (change)="selectCountry($event)" formControlName="country" >
                             <option value="">--Select country--</option>
                             <option  value="India">India</option>
                             <option value="Nepal">Nepal</option>
                             <option value="Shrilanka">Shrilanka</option>
                         </select>
-                        <span *ngIf="f.country.invalid && f.country.touched" style="color: red;">Please select country</span>
-                        <span *ngIf="submitted" style="color: red">Please select country</span>
+                        <span *ngIf="f.country.invalid && f.country.touched" style="color: red;" class="space">Please select country</span>
+                        <span *ngIf="submitted" style="color: red" class="mt-20">Please select country</span>
         
-                        <div [ngClass]="{ 'disabled-div': stateDisable }" >
-                            <select  name="state" class="status"  formControlName="state">
-                                <option value="">-Select state-</option>
-                                <option *ngFor="let states of allState" [value]="states" >{{ states }}</option>
-                            </select>
-                            <span *ngIf="f.state.invalid && f.state.touched" style="color: red;">Please select state</span>
-                            <span *ngIf="submitted" style="color: red">Please select state</span>
+                       
+                        <div [ngClass]="{ 'disabled-div': stateDisable }" class="space" >
+                          <select  name="state" class="status"  formControlName="state">
+                              <option value="">-Select state-</option>
+                              <option *ngFor="let states of allState" [value]="states" >{{ states }}</option>
+                          </select>
+                          <span *ngIf="f.state.invalid && f.state.touched" style="color: red;">Please select state</span>
+                          <span *ngIf="submitted" style="color: red">Please select state</span>
                         </div>
-                  </div>
+                      </div>
                   <!-- document  -->
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-4 d-flex " >
                     <select  name="document" class="status" (change)="open($event)">
                         <option >Please select</option>
                         <option  value="pdf">PDF</option>
                         <option value="png">PNG</option>
                     </select>
-    
-                    <input type="file" formControlName="document" (click)="uploadDocument(studentForm.controls.document.value)" 
+
+                    <input type="file" class="form-control form-control-lg w-50  space status " formControlName="document" (click)="uploadDocument(studentForm.controls.document.value)" 
                     [(ngModel)]="documentNg" accept="{{acceptedFileTypes}}" [ngStyle]="{'pointer-events': documentBtnDesable ? 'none' : 'auto', 'opacity': documentBtnDesable ? 0.5 : 1}"> 
                     <span *ngIf="f.document.invalid && f.document.touched" style="color: red;">Please select document</span>
                     <span *ngIf="submitted" style="color: red;">Please select document</span>
@@ -163,14 +168,14 @@
 
                   <div class="form-outline mb-4">
                     <input class="form-check-input" type="checkbox" formControlName="checkbox" id="checkId" [value]="checked" (click)="checkboxClick()">
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label class="form-check-label space" for="flexCheckChecked">
                       Confirm
                     </label>
                     <span *ngIf="f.checkbox.invalid && f.checkbox.touched" style="color: red">Please checked the box</span> 
                   </div>
 
-                  
-
+             
+                
                   <div class="pt-1 mb-4">
                     <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
                   </div>
@@ -209,8 +214,8 @@
                     <option value="phone">Phone</option>
                 </select>
                 <table class="table">
-                    <thead>
-                      <tr>
+                  <thead>
+                    <tr>
                             <th>No</th>
                             <th>Id</th>
                             <th>Mr/Mrs</th>

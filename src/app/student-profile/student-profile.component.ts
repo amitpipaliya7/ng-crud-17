@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/authService/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-student-profile',
@@ -14,15 +15,16 @@ import { CommonModule } from '@angular/common';
     FormsModule, 
     ReactiveFormsModule, 
     ToastrModule,
-    CommonModule
+    CommonModule,
+    NgxSpinnerModule, 
   ],
   templateUrl: './student-profile.component.html',
   styleUrl: './student-profile.component.scss',
-  providers : [AuthService]
+  providers : [AuthService, NgxSpinnerService, HttpClientModule]
 })
 export class StudentProfileComponent {
 
-  constructor(private activatedRoute:ActivatedRoute, private authSer : AuthService){}
+  constructor(private activatedRoute:ActivatedRoute, private authSer : AuthService, private spinner: NgxSpinnerService){}
 
   MyProfileData:any= []
   MyProfileId: any
@@ -36,6 +38,7 @@ export class StudentProfileComponent {
       // this.MyProfileData = ele
       this.MyProfileData.push(ele)
     })
+
 
     
   }
