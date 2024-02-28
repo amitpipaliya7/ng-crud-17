@@ -93,7 +93,7 @@
                     </div>
                   </div>
 
-                  <label class="form-label" for="form2Example27">Phone number</label>
+                  <!-- <label class="form-label" for="form2Example27">Phone number</label>
                   <div class="form-outline mb-4 d-flex " >
                     <input type="text" id="form2Example27" class="form-control form-control-lg " type="text" (input)="onInputChange($event)" formControlName="phnoPrime" 
                     maxlength="10" minlength="10" [(ngModel)]="phnoPrimeNg"/>
@@ -103,7 +103,6 @@
                   <span *ngIf="submitted" style="color: red">invalid Phone number</span>
                   
                   <div class="form-outline mb-4 ">
-                    <!-- <button type="button" class="btn btn-primary"  (click)="addPhone()">Add more phone</button> -->
                     <div formArrayName="emailAnother">
                         <ng-container *ngFor="let e of phnoget.controls; let i=index">
                           <div class="form-outline mb-4 w-80 d-flex">
@@ -114,8 +113,26 @@
                           </div>
                         </ng-container>
                     </div>
+                  </div> -->
+                  
+                  <!-- //All countries -->
+                  <div class="form-outline mb-4 d-flex">
+                    <select  name="country" class="status"  formControlName="allCountries" (change)="onCountrySelect($event)">
+                        <option value="">-Select country-</option>
+                        <option *ngFor="let item of allCountries" [value]="item.value" >{{ item.desc }}</option>
+                    </select>
+                    <span *ngIf="f.allCountries.invalid && f.allCountries.touched" style="color: red;" class="space">Please select country</span>
+                    <span *ngIf="submitted" style="color: red" class="mt-20">Please select country</span>
                   </div>
-
+                  
+                  <label class="form-label" for="form2Example27">Phone number</label>
+                  <div class="form-outline mb-4 d-flex " >
+                      <input type="text" id="form2Example27" class="form-control inputsqure" type="text"  formControlName="countryCode" [(ngModel)]="selectedCountryMobileCode" readonly/>
+                      <input type="text" id="form2Example27" class="form-control form-control-lg space" type="text" formControlName="cPhoneNum" (input)="onInputChange($event)" 
+                      maxlength="10" minlength="10" />
+                    <span *ngIf="f.cPhoneNum.invalid && f.cPhoneNum.touched" style="color: red;" class="space">Invalid phone number</span>
+                    <span *ngIf="submitted" style="color: red" class="mt-20">Invalid phone number</span>
+                  </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Pincode  </label>
                     <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="pincode" 
@@ -172,10 +189,7 @@
                       Confirm
                     </label>
                     <span *ngIf="f.checkbox.invalid && f.checkbox.touched" style="color: red">Please checked the box</span> 
-                  </div>
-
-             
-                
+                  </div>      
                   <div class="pt-1 mb-4">
                     <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
                   </div>
@@ -213,9 +227,9 @@
                     <option value="email">Email</option>
                     <option value="phone">Phone</option>
                 </select>
-                <table class="table">
+                <table class="table table-bordered">
                   <thead>
-                    <tr>
+                    <tr class=" table-dark">
                             <th>No</th>
                             <th>Id</th>
                             <th>Mr/Mrs</th>
@@ -227,9 +241,8 @@
                             <th>Country</th>
                             <th>State</th>
                             <th>Address</th>
-                            <th>Action</th>    
-                            <th>Toggle</th>
-                            <th><input type="checkbox" (change)="disableAll($event)"></th>
+                            <th style="text-align: center;" colspan="2">Action</th>  
+                            <th>Toggle &nbsp; <input type="checkbox" (change)="disableAll($event)"></th>
                       </tr>
                     </thead>
                     <tbody [ngStyle]="{'pointer-events': isTableDisabled ? 'none' : 'auto', 'opacity': isTableDisabled ? 0.5 : 1}" *ngFor="let std of studentData 
@@ -250,14 +263,14 @@
                             <!-- <td>{{std.lastname}}</td> -->
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.age}}</td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.email}} <br/></td>
-                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.phnoPrime}}</td>  
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.PhoneNumber}}</td>  
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.pincode}}</p></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.country}}</p></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.state}}</p></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.address }}</td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-danger" (click)="deleteBtn(std.id)">Delete</Button></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-success" (click)="editBtn(std)">Edit</Button></td>
-                            <td><input type="checkbox" (change)="disableCheckboxClick($event, std.id)" ></td>
+                            <td style="text-align: center;"><input type="checkbox" (change)="disableCheckboxClick($event, std.id)" ></td>
                         </tr>
                     </tbody>
                   </table>

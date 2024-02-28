@@ -8,15 +8,13 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthService } from './auth/authService/auth.service';
 import { StudentService } from './studentService/student.service';
-import { authGuard } from './auth/guard/auth.guard';
 
 export const routes: Routes = [
     {
       path : 'student/:id',
       component : StudentComponent,
-      canActivate : [authGuard],
-      canDeactivate : [AuthService]
-        
+      canActivate : [AuthService],
+      canDeactivate : [AuthService]    
     },
     {
       path:'login',
@@ -29,7 +27,8 @@ export const routes: Routes = [
     {
       path : 'studentedit/:id',
       component : StudentEditComponent,
-      canActivate : [authGuard],
+      canActivate : [AuthService]
+
 
     },
     {
@@ -40,7 +39,7 @@ export const routes: Routes = [
     {
       path : 'changepassword/:id',
       component : ChangePasswordComponent,
-      canActivate : [authGuard],
+      canActivate : [AuthService],
 
     },
     {

@@ -17,10 +17,10 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
-  providers : [AuthService]
+  providers : [AuthService, ToastrService]
 })
 export class SignUpComponent {
-  constructor(private authSer : AuthService, private router : Router){
+  constructor(private authSer : AuthService, private router : Router, private toastr : ToastrService){
     this.getApi()
   }
 
@@ -68,13 +68,17 @@ export class SignUpComponent {
          })
          if(d){
           // this.toastr.error("Email already exist")
-          alert("Email already exist")
+          this.toastr.error("Email already exist")
         }else{
          this.authSer.postApi(data).subscribe((ele:any)=>{
            console.log(ele);
           let id = ele.id
-          // this.toastr.success("Signup succesfull")
-          // this.router.navigate(['/student',id])
+
+          const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+          localStorage.getItem("token")
+          localStorage.setItem('token', jwtToken);
+
+          this.toastr.success("Signup succesfull")
           this.router.navigate(['/student',id])
         }) 
         }

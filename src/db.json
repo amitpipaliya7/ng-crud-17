@@ -1,21 +1,21 @@
 {
   "student": [
     {
-      "id": "66c1",
       "status": "Mr",
       "firstname": "jaguu",
       "lastname": "ofMangu",
-      "age": 12,
+      "age": 9,
       "email": "aaa@aa.com",
       "emailAnother": [],
       "phnoPrime": "1212121212",
       "phno": [],
-      "pincode": "121212",
-      "country": "India",
-      "state": "Karnataka",
-      "document": "C:\\fakepath\\Amit Work.txt",
+      "pincode": "121215",
+      "country": "Nepal",
+      "state": "Gandaki Province",
+      "document": "C:\\fakepath\\angular.pdf",
       "address": "aaaaa",
-      "checkbox": true
+      "checkbox": true,
+      "id": "66c1"
     },
     {
       "id": "3f9e",
@@ -86,23 +86,195 @@
       "id": "3cb8"
     },
     {
-      "id": "d20b",
+      "id": "7fd3",
+      "status": "Mrs",
+      "firstname": "asdasd",
+      "lastname": "asdasd",
+      "age": 34,
+      "email": "sasdf@ihfgd.com",
+      "emailAnother": [],
+      "phnoPrime": "4234234234",
+      "phno": [],
+      "allCountries": "AU",
+      "pincode": "345353",
+      "country": "India",
+      "state": "Assam",
+      "document": "C:\\fakepath\\angLogo.png",
+      "address": "fdgdfgfgf",
+      "checkbox": true
+    },
+    {
+      "id": "281c",
+      "status": "Mrs",
+      "firstname": "z",
+      "lastname": "z",
+      "age": 2,
+      "email": "pop@pop.com",
+      "emailAnother": [],
+      "phnoPrime": "9861456247",
+      "phno": [],
+      "allCountries": "BH",
+      "countryCode": "",
+      "cPhoneNum": "7961895898",
+      "pincode": "379425",
+      "country": "Shrilanka",
+      "state": "Central",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "zz",
+      "checkbox": true
+    },
+    {
+      "id": "006c",
+      "status": "Mrs",
+      "firstname": "hh",
+      "lastname": "hh",
+      "age": 45,
+      "email": "hh@hh.com",
+      "emailAnother": [],
+      "phnoPrime": "9825476566",
+      "phno": [],
+      "allCountries": "AZ",
+      "countryCode": "+994",
+      "cPhoneNum": "8965236598",
+      "pincode": "987878",
+      "country": "India",
+      "state": "Meghalaya",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "opopop",
+      "checkbox": true
+    },
+    {
+      "id": "6028",
+      "status": "Mr",
+      "firstname": "sa",
+      "lastname": "sa",
+      "age": 32,
+      "email": "poip@l.com",
+      "emailAnother": [],
+      "phnoPrime": "3444444444",
+      "phno": [],
+      "pincode": "888888",
+      "country": "India",
+      "state": "Goa",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "kkkk",
+      "checkbox": true
+    },
+    {
+      "id": "782b",
+      "status": "Mr",
+      "firstname": "e",
+      "lastname": "r",
+      "age": 43,
+      "email": "k@l.cpm",
+      "emailAnother": [],
+      "phnoPrime": "4244444444",
+      "phno": [],
+      "allCountries": "AT",
+      "countryCode": "4444444444",
+      "cPhoneNum": "4444444444",
+      "pincode": "444444",
+      "country": "Nepal",
+      "state": "Gandaki Province",
+      "document": "C:\\fakepath\\angLogo.png",
+      "address": "ddd",
+      "checkbox": true
+    },
+    {
+      "id": "1f3f",
+      "number": "+376 5675757576",
       "status": "Mr",
       "firstname": "aaa",
-      "lastname": "aaa",
-      "age": 113,
-      "email": "aaa@ggwdejhevfhe.com",
-      "emailAnother": [
-        "ggjhg@dufgh.com",
-        "djhgkhsd@sduih.com"
-      ],
-      "phnoPrime": "2635272342",
+      "lastname": "a",
+      "age": 2,
+      "email": "accaaaaaaaa@a.com",
+      "emailAnother": [],
+      "phnoPrime": "2190564565",
       "phno": [],
-      "pincode": "213232",
+      "allCountries": "AD",
+      "countryCode": "+376",
+      "cPhoneNum": "5675757576",
+      "pincode": "576657",
+      "country": "Nepal",
+      "state": "Province No. 2",
+      "document": "C:\\fakepath\\angLogo.png",
+      "address": "sazfsdfd",
+      "checkbox": true
+    },
+    {
+      "id": "294c",
+      "status": "Mr",
+      "firstname": "f",
+      "lastname": "f",
+      "age": 3,
+      "email": "gh@as.com",
+      "emailAnother": [],
+      "phnoPrime": "9865783798",
+      "phno": [],
+      "allCountries": "AX",
+      "cPhoneNum": "+358 1212121212",
+      "pincode": "121212",
       "country": "India",
-      "state": "Nagaland",
-      "document": "C:\\fakepath\\Amit Work.txt",
-      "address": "sssdfdfdf",
+      "state": "Chhattisgarh",
+      "document": "C:\\fakepath\\angLogo.png",
+      "address": "asdasdad",
+      "checkbox": true
+    },
+    {
+      "id": "f9a3",
+      "status": "Mr",
+      "firstname": "aSA",
+      "lastname": "ASD",
+      "age": 3,
+      "email": "lkf@ab.com",
+      "emailAnother": [
+        "lgd@bc.com"
+      ],
+      "phnoPrime": "1257956778",
+      "phno": [
+        ""
+      ],
+      "allCountries": "AS",
+      "cPhoneNum": "+1 4334343434",
+      "pincode": "344444",
+      "country": "Shrilanka",
+      "state": "North Central",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "asfsdf",
+      "checkbox": true
+    },
+    {
+      "id": "c7d8",
+      "status": "Mrs",
+      "firstname": "twelve",
+      "lastname": "twelve",
+      "age": 12,
+      "email": "twelve@tw.com",
+      "emailAnother": [],
+      "allCountries": "DZ",
+      "PhoneNumber": "+213 9953634334",
+      "pincode": "989898",
+      "country": "India",
+      "state": "Manipur",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "twelve twelve twelve",
+      "checkbox": true
+    },
+    {
+      "id": "a8bd",
+      "status": "Mrs",
+      "firstname": "thi",
+      "lastname": "thi",
+      "age": 1,
+      "email": "thi@thi.com",
+      "emailAnother": [],
+      "allCountries": "AM",
+      "PhoneNumber": "+374 1414141414",
+      "pincode": "141414",
+      "country": "Nepal",
+      "state": "Bagmati Province",
+      "document": "C:\\fakepath\\angular.pdf",
+      "address": "thi thi thi",
       "checkbox": true
     }
   ],
@@ -114,10 +286,10 @@
       "id": "9125"
     },
     {
-      "id": "d3ee",
       "name": "sasdsd",
       "email": "dadas@whd.com",
-      "password": "1212323232"
+      "password": "1234567890",
+      "id": "d3ee"
     },
     {
       "id": "883a",
@@ -142,6 +314,36 @@
       "name": "aaaaa",
       "email": "aaaaaa@aaaa.com",
       "password": "3265988745"
+    },
+    {
+      "id": "a603",
+      "name": "elg",
+      "email": "elg@ll.com",
+      "password": "2132659887"
+    },
+    {
+      "id": "9a93",
+      "name": "qw",
+      "email": "elgs@ll.com",
+      "password": "2132659887"
+    },
+    {
+      "id": "8f0b",
+      "name": "a",
+      "email": "a@b.com",
+      "password": "1212112121"
+    },
+    {
+      "id": "a109",
+      "name": "b",
+      "email": "bb@b.com",
+      "password": "1234567890"
+    },
+    {
+      "id": "813a",
+      "name": "z",
+      "email": "z@2.com",
+      "password": "2112122434"
     }
   ]
 }
