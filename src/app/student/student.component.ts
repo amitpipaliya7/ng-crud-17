@@ -247,6 +247,7 @@ export class StudentComponent implements OnInit {
         this.toastr.success("You'r logout");
         localStorage.removeItem('token');
       }, 1000);
+      
     } else if (event.target.value == 'myprofile') {
       // this.router.navigateByUrl("/studentprofile")
     } else if (event.target.value == 'changepassword') {
@@ -269,8 +270,6 @@ export class StudentComponent implements OnInit {
     let countryCode = this.studentForm.get('countryCode')?.value;
     let cPhoneNum = this.studentForm.get('cPhoneNum')?.value;
     let finalNumber = countryCode + ' ' + cPhoneNum;
-
-
 
     if (this.checked) {
       // let data = {

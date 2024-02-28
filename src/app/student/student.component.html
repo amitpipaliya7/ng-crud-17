@@ -34,15 +34,14 @@
             <div class="card-body p-4 p-lg-5 text-black">
   
                 <form [formGroup]="studentForm" (ngSubmit)="submitData()">
-                    
-
+                  
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                     <span class="h1 fw-bold mb-0">Student form</span>
                   </div>
            
                   <div class="form-outline mb-4">
-                    <select formControlName="status" name="status" class="status" ngModel [(ngModel)]="statusNg">
+                    <select formControlName="status" name="status" class="status" [(ngModel)]="statusNg">
                         <option  value="">Please select</option>
                         <option  value="Mr">Mr</option>
                         <option value="Mrs">Mrs </option>
@@ -208,8 +207,8 @@
 <!-- table -->
 <section  style="background-color: #9A616D;">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-          <div class="card" style="border-radius: 1rem;">
+        <div class="col col-xl-10 ">
+          <div class="card shadow" style="border-radius: 1rem;">
             <div class="card-body p-4 p-lg-5 text-black">
                 <ng-container *ngIf="searchByName ">
                     <input type="text" class="search-hover" name="" placeholder="search here by name" [(ngModel)]=searchValueByName/>
@@ -221,13 +220,13 @@
                     <input type="text" class="search-hover" placeholder="Search here by phone no." [(ngModel)]=searchValueByPhone>
                 </ng-container>
         
-                <select name="searchDrop" class="status" (change)="onSelectSearch($event)">
+                <select name="searchDrop" class="status space" (change)="onSelectSearch($event)">
                     <option value="pleaseselect"> - Please select -</option>
                     <option value="name">Name</option>
                     <option value="email">Email</option>
                     <option value="phone">Phone</option>
                 </select>
-                <table class="table table-bordered">
+                <table class="table table-bordered shadow">
                   <thead>
                     <tr class=" table-dark">
                             <th>No</th>
@@ -274,7 +273,6 @@
                         </tr>
                     </tbody>
                   </table>
-
                   <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                 </pagination-controls>
                 
@@ -287,3 +285,4 @@
         </div>
       </div>
 </section>
+

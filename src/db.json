@@ -69,19 +69,19 @@
       "checkbox": true
     },
     {
-      "status": "Mrs",
-      "firstname": "aaaaa",
-      "lastname": "aa",
-      "age": 3,
-      "email": "2aadf@dgad.com",
+      "status": "Mr",
+      "firstname": "aaadd",
+      "lastname": "aadd",
+      "age": 4,
+      "email": "adddaadf@dgad.com",
       "emailAnother": [],
-      "phnoPrime": "3423423333",
+      "phnoPrime": "3333423333",
       "phno": [],
-      "pincode": "234233",
+      "pincode": "343434",
       "country": "Nepal",
       "state": "Province No. 2",
       "document": "C:\\fakepath\\angLogo.png",
-      "address": "aaaa",
+      "address": "addd",
       "checkbox": true,
       "id": "3cb8"
     },
@@ -259,23 +259,6 @@
       "document": "C:\\fakepath\\angular.pdf",
       "address": "twelve twelve twelve",
       "checkbox": true
-    },
-    {
-      "id": "a8bd",
-      "status": "Mrs",
-      "firstname": "thi",
-      "lastname": "thi",
-      "age": 1,
-      "email": "thi@thi.com",
-      "emailAnother": [],
-      "allCountries": "AM",
-      "PhoneNumber": "+374 1414141414",
-      "pincode": "141414",
-      "country": "Nepal",
-      "state": "Bagmati Province",
-      "document": "C:\\fakepath\\angular.pdf",
-      "address": "thi thi thi",
-      "checkbox": true
     }
   ],
   "data": [
@@ -344,6 +327,12 @@
       "name": "z",
       "email": "z@2.com",
       "password": "2112122434"
+    },
+    {
+      "id": "66be",
+      "name": "aaa",
+      "email": "phojk@uo.com",
+      "password": "1298764545"
     }
   ]
 }

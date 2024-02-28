@@ -194,7 +194,7 @@ export class StudentEditComponent implements OnInit{
       
       // this.router.navigateByUrl('student', this.editedId)
       this.router.navigate(['student',this.editedId])
-      this.toastr.success("Data syccesfully updated")
+      this.toastr.success("Data succesfully updated")
     
       this.submitted=false
       // this.studentForm.reset()
