@@ -5,6 +5,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthService } from '../authService/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-log-in',
@@ -77,14 +78,11 @@ export class LogInComponent {
       data.find((ele:any)=>{
         id = ele.id
         email = ele.email
-        return data = ele.email===emailLogin && ele.password==passwordLogin
+        return data = ele.email===emailLogin && ele.password==passwordLogin 
       })
       if(data){
-       console.log(email);
-       
-        // console.log("sUCCESS");
-        this.toastr.success("Login succesfully")
         this.router.navigate(['/student', id])
+        this.toastr.success("Login succesfully")
         // this.router.navigate(['/student'])
       
         const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';

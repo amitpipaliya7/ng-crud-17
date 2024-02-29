@@ -63,13 +63,32 @@
                     <span *ngIf="submitted" style="color: red">invalid Email</span>
                   </div>
             
-                  <div class="form-outline mb-4">
+                  <!-- <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Phone number</label>
                     <input class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="phnoPrime" placeholder="Enter Phone no."
                     maxlength="10" minlength="10" [(ngModel)]="updatedUser.phnoPrime" #phonePrimeView/>
                     <span *ngIf="f.phnoPrime?.invalid && f.phnoPrime?.touched" style="color: red">invalid Phone number</span>
                     <span *ngIf="submitted" style="color: red">invalid Phone number</span>
-                  </div>
+                  </div> -->  
+
+                    <!-- //All countries -->
+                    <div class="form-outline mb-4 d-flex">
+                      <select  name="country" class="status"  formControlName="allCountries" (change)="onCountrySelect($event)" [(ngModel)]="updatedUser.allCountries">
+                          <option value="">-Select country-</option>
+                          <option *ngFor="let item of allCountries" [value]="item.value" >{{ item.desc }}</option>
+                      </select>
+                      <span *ngIf="f.allCountries.invalid && f.allCountries.touched" style="color: red;" class="space">Please select country</span>
+                      <span *ngIf="submitted" style="color: red" class="mt-20">Please select country</span>
+                    </div>
+                    
+                    <label class="form-label" for="form2Example27">Phone number</label>
+                    <div class="form-outline mb-4 d-flex " >
+                        <input type="text" id="form2Example27" class="form-control inputsqure" type="text"  formControlName="countryCode" [(ngModel)]="selectedCountryMobileCode" readonly />
+                        <input type="text" id="form2Example27" class="form-control form-control-lg space" type="text" formControlName="cPhoneNum" (input)="onInputChange($event) " 
+                        maxlength="10" minlength="10" [(ngModel)]="updatePhoneNum"/>
+                      <span *ngIf="f.cPhoneNum.invalid && f.cPhoneNum.touched" style="color: red;" class="space">Invalid phone number</span>
+                      <span *ngIf="submitted" style="color: red" class="mt-20">Invalid phone number</span>
+                    </div>
                 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Pincode  </label>
@@ -78,8 +97,9 @@
                     <span *ngIf="f.pincode?.invalid && f.pincode?.touched" style="color: red">invalid Pincode </span>
                     <span *ngIf="submitted" style="color: red">invalid Pincode </span>
                   </div>
+
                    <!-- country -->
-                  <div class="form-outline mb-4 ">
+                  <div class="form-outline mb-4 d-flex">
                         <select  name="country" class="status" (change)="selectCountry($event)" formControlName="country" 
                         ngModel [(ngModel)]="updatedUser.country" #countryView >
                             <option value="">--Select country--</option>
@@ -90,7 +110,7 @@
                         <span *ngIf="f.country.invalid && f.country.touched" style="color: red;">Please select country</span>
                         <span *ngIf="submitted" style="color: red">Please select country</span>
         
-                        <div [ngClass]="{ 'disabled-div': stateDisable }" >
+                        <div [ngClass]="{ 'disabled-div': stateDisable }" class="space">
                             <select  name="state" class="status"  formControlName="state" 
                             ngModel [(ngModel)]="updatedUser.state" #stateView>
                                 <option value="">-Select state-</option>

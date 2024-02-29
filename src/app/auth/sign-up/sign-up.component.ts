@@ -61,29 +61,40 @@ export class SignUpComponent {
       ...this.signUpForm.value
     }
     // let id:any ; 
-    this.authSer.getApi().subscribe((res:any)=>{
-        let d : any = res
-         d.find((ele:any)=>{
-          return d=ele.email===emailSignup
-         })
-         if(d){
-          // this.toastr.error("Email already exist")
-          this.toastr.error("Email already exist")
-        }else{
-         this.authSer.postApi(data).subscribe((ele:any)=>{
-           console.log(ele);
-          let id = ele.id
+    this.authSer.getApi().subscribe((res: any) => {
+      let d: any = res;
+
+      if (d.length === 0) {
+        this.authSer.postApi(data).subscribe((ele: any) => {
+          let id = ele.id;
 
           const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-          localStorage.getItem("token")
+          localStorage.getItem("token");
           localStorage.setItem('token', jwtToken);
 
-          this.toastr.success("Signup succesfull")
-          this.router.navigate(['/student',id])
-        }) 
-        }
+          this.toastr.success("Signup successful");
+          this.router.navigate(['/student', id]);
+        });
+      } else {
+        d.find((ele: any) => {
+          return d = ele.email === emailSignup;
+        });
+        
+        if (d) {
+          this.toastr.error("Email already exists");
+        } else {
+          this.authSer.postApi(data).subscribe((ele: any) => {
+            let id = ele.id;
+            const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+            localStorage.getItem("token");
+            localStorage.setItem('token', jwtToken);
 
-    })
+            this.toastr.success("Signup successful");
+            this.router.navigate(['/student', id]);
+          });
+        }
+      }
+    });
     
       
     }

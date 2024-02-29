@@ -61,7 +61,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  submitUserData: string = '';
+  public  submitUserData: string = '';
   // cli(da:any){
   //  this.submitUserData= da.srcElement.name
   // }
@@ -178,7 +178,7 @@ export class StudentComponent implements OnInit {
   // @ViewChild('pincode')  pincode : ElementRef
   // @ViewChild('address')  address : ElementRef
 
-  statusNg: any;
+  public statusNg: string = '';
   firstnameNg: any;
   lastnameNg: any;
   ageNg: any;
@@ -323,7 +323,7 @@ export class StudentComponent implements OnInit {
         }
       });
       this.submitted = false;
-      // this.studentForm.reset()
+      this.studentForm.reset()
     }
   }
 
@@ -839,7 +839,7 @@ export class StudentComponent implements OnInit {
 
   selectedCountryMobileCode: any;
 
-  onCountrySelect(event: any) {
+  public  onCountrySelect(event: any) {
     const countryCode = event.target.value;
     const selectedCountry = this.allCountries.find(
       (country) => country.value === countryCode
