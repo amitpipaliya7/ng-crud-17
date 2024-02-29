@@ -1,15 +1,11 @@
-import {  Component,  ElementRef,  NgModule,  OnInit,  ViewChild,} from '@angular/core';
+import {  Component,  OnInit, } from '@angular/core';
 import { StudentService } from '../studentService/student.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  FormArray,  FormControl,  FormGroup,  FormsModule,  ReactiveFormsModule,  Validators,
-} from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {  FormArray,  FormControl,  FormGroup,  FormsModule,  ReactiveFormsModule,  Validators } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { Ng2OrderModule, Ng2OrderPipe } from 'ng2-order-pipe';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { NameFilterPipe } from '../pipe/name-filter.pipe';
@@ -258,9 +254,7 @@ export class StudentComponent implements OnInit {
     inputElement.value = numericValue;
   }
 
-
-
-
+  
   public acceptedFileTypes: string = '';
   public documentBtnDesable: boolean = true;
   public open(event: any) {
@@ -358,7 +352,7 @@ export class StudentComponent implements OnInit {
 
   public insert: boolean = true;
   public editBtn(data: any) {
-    console.log(data.id);
+  console.log(data.id);
 
     Swal.fire({
       title: 'Are you sure?',
@@ -492,7 +486,6 @@ export class StudentComponent implements OnInit {
       `,
     });
   }
-
   public myProfile() {
     this.spinner.show();
     setTimeout(() => {

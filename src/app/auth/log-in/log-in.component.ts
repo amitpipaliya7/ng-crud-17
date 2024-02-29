@@ -5,7 +5,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthService } from '../authService/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-log-in',
@@ -37,7 +36,6 @@ export class LogInComponent {
     return this.loginForm.controls
   }
 
-
   public submitted : boolean = false
 
   public showData:any
@@ -46,8 +44,6 @@ export class LogInComponent {
       this.showData = data
     })
   }
-
-  
 
   public logIn(){
     if(this.loginForm.invalid){
