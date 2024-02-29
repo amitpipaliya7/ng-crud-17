@@ -24,7 +24,7 @@ export class SignUpComponent {
     this.getApi()
   }
 
-  emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$'
+  private emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$'
 
   signUpForm = new FormGroup({
     name : new FormControl(null,[Validators.required,Validators.pattern('[A-Za-z]+$')]),
@@ -36,71 +36,64 @@ export class SignUpComponent {
     return this.signUpForm.controls
   }
 
-  submitted : boolean = false
+  public submitted : boolean = false
 
-  showData:any
-  getApi(){
+  public showData:any
+  public getApi(){
     this.authSer.getApi().subscribe((data:any)=>{
       this.showData = data
     })
   }
 
-  signUp(){
+  public signUp(){
 
-    if(this.signUpForm.invalid){
-      this.submitted=true
-      return 
-    }
-
-    let emailSignup = this.signUpForm.controls.email.value
-    // let passwordSignup = this.signUpForm.controls.password.value
-
-    
-   
-    let data = {
-      ...this.signUpForm.value
-    }
-    // let id:any ; 
-    this.authSer.getApi().subscribe((res: any) => {
-      let d: any = res;
-
-      if (d.length === 0) {
-        this.authSer.postApi(data).subscribe((ele: any) => {
-          let id = ele.id;
-
-          const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-          localStorage.getItem("token");
-          localStorage.setItem('token', jwtToken);
-
-          this.toastr.success("Signup successful");
-          this.router.navigate(['/student', id]);
-        });
-      } else {
-        d.find((ele: any) => {
-          return d = ele.email === emailSignup;
-        });
-        
-        if (d) {
-          this.toastr.error("Email already exists");
-        } else {
-          this.authSer.postApi(data).subscribe((ele: any) => {
-            let id = ele.id;
-            const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-            localStorage.getItem("token");
-            localStorage.setItem('token', jwtToken);
-
-            this.toastr.success("Signup successful");
-            this.router.navigate(['/student', id]);
-          });
-        }
+      if(this.signUpForm.invalid){
+        this.submitted=true
+        return 
       }
-    });
-    
       
-    }
+      let emailSignup = this.signUpForm.controls.email.value    
+      
+      let data = {
+        ...this.signUpForm.value
+      }
+        this.authSer.getApi().subscribe((res: any) => {
+          let d: any = res;
+        
+          if (d.length === 0) {
+            this.authSer.postApi(data).subscribe((ele: any) => {
+              let id = ele.id;
+              const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+              localStorage.getItem("token");
+              localStorage.setItem('token', jwtToken);
+            
+              this.toastr.success("Signup successful");
+              this.router.navigate(['/student', id]);
+            });
+          } else {
+            d.find((ele: any) => {
+              return d = ele.email === emailSignup;
+            });
+
+            if (d) {
+              this.toastr.error("Email already exists");
+            } else {
+              this.authSer.postApi(data).subscribe((ele: any) => {
+                let id = ele.id;
+                const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+                localStorage.getItem("token");
+                localStorage.setItem('token', jwtToken);
+              
+                this.toastr.success("Signup successful");
+                this.router.navigate(['/student', id]);
+              });
+            }
+          }
+        }); 
+  }
 
 
-    loginPage(){
+    public loginPage(){
       this.router.navigate(['login'])
     }
 

@@ -8,7 +8,6 @@ export class StudentService{
 
   constructor(private http : HttpClient ) { }
  
-
   url = "http://localhost:3000/student"
 
   getApi(){
@@ -20,29 +19,21 @@ export class StudentService{
   }
 
   deleteApi(id:any){
-    // let deletUrl = this.url + `/${id}` 
-    // return this.http.delete(deletUrl)
     return this.http.delete("http://localhost:3000/student/"+id)
-
   }
 
   updateApi(id: any, data: any) {
     return this.http.put("http://localhost:3000/student/" + id, data);
   }
 
-
   GetEditUser(id:any){
     let editUserID=`${this.url}/${id}`
     return this.http.get(editUserID)
   }
-
 
   //for pagination
   urlUser = "http://localhost:3000/user"
   getApiOfUser(){
     return this.http.get(this.urlUser)
   }
-
-
-
 }

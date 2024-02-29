@@ -24,16 +24,9 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 })
 export class ChangePasswordComponent implements OnInit{
   constructor(private activatedRoute : ActivatedRoute, private toastr: ToastrService,private spinner: NgxSpinnerService){}
-  
-  // localData = JSON.parse(localStorage.getItem("LoginData"))
-  
+
   authService:AuthService=inject(AuthService)
 
-//    changePasswordForm = new FormGroup({
-//   curretpassword : new FormControl(''),
-//   newpassword : new FormControl(''),
-//   confirmpassword : new FormControl('')
-// })  
 changePasswordForm = new FormGroup({
   curretpassword : new FormControl(null,[Validators.required]),
   newpassword : new FormControl(null,[Validators.required, Validators.minLength(10),Validators.maxLength(10)]),
@@ -44,15 +37,10 @@ get f (){
   return this.changePasswordForm.controls
 }
 
-
-  // localPassword
-  // localId
-  // IdforUpdate
-
-  changePassId: any
-  oldName:any
-  oldEmail:any
-  oldPassword:any
+  private changePassId: any
+  private oldName:any
+  private oldEmail:any
+  private oldPassword:any
 
   ngOnInit(): void {
 
@@ -69,22 +57,10 @@ get f (){
       })
     })
    
-
-    
-   
-
- 
-     
-    // this.authService.changePasswordGetApi(id).subscribe((ele:any)=>{
-    //   console.log(ele);
-    //   this.IdforUpdate = ele.id
-    // })
   }
 
-
-
-  submitted :boolean=false
-  savePassword(){
+  public submitted :boolean=false
+  public savePassword(){
     
     this.submitted=true
 
@@ -95,9 +71,7 @@ get f (){
     let curretpassword = this.changePasswordForm.controls.curretpassword.value
     let newpassword = this.changePasswordForm.controls.newpassword.value
     let confirmPassword = this.changePasswordForm.controls.confirmpassword.value
-
-    // console.log(this.IdforUpdate);
-
+    
     this.authService.changePasswordGetApi(this.changePassId).subscribe((ele)=>{
       console.log(ele); 
     })
@@ -120,8 +94,6 @@ get f (){
     this.submitted=false  
     this.changePasswordForm.reset()
     }    
-    
-    // console.log(this.changePasswordForm.value);
     
   }
 }

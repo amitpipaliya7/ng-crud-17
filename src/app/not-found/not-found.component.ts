@@ -12,7 +12,7 @@ export class NotFoundComponent {
 
   constructor(private router : Router){}
 
-  loginPage(){
+  public loginPage(){
     this.router.navigate(['login'])
   }
 }

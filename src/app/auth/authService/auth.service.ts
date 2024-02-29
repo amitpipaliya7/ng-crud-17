@@ -11,9 +11,6 @@ export class AuthService implements CanDeactivate<StudentComponent>, CanActivate
 
   constructor(private http : HttpClient,private route:Router) { }
 
-
-
-
   url = "http://localhost:3000/data"
 
   getApi(){
@@ -26,7 +23,6 @@ export class AuthService implements CanDeactivate<StudentComponent>, CanActivate
 
    //My Profile
    GetMyProfileApi(id:any){
-    // let editUserID=`${this.url}/${id}`
     return this.http.get("http://localhost:3000/data/" + id)
   }
 

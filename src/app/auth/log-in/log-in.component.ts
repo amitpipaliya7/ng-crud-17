@@ -24,11 +24,9 @@ import { empty } from 'rxjs';
 })
 export class LogInComponent {
 
-  constructor(private authSer : AuthService, private router : Router, private toastr: ToastrService){;
-    
-  }
+  constructor(private authSer : AuthService, private router : Router, private toastr: ToastrService){}
 
-  emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
+  public emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
 
   loginForm = new FormGroup({
     email : new FormControl(null,[Validators.required,Validators.pattern(this.emailPattern)]),
@@ -40,10 +38,10 @@ export class LogInComponent {
   }
 
 
-  submitted : boolean = false
+  public submitted : boolean = false
 
-  showData:any
-  getApi(){
+  public showData:any
+  public getApi(){
     this.authSer.getApi().subscribe((data)=>{
       this.showData = data
     })
@@ -51,9 +49,7 @@ export class LogInComponent {
 
   
 
-  logIn(){
-    // console.log(this.signUpForm.value);
-
+  public logIn(){
     if(this.loginForm.invalid){
       this.submitted=true
       return 
@@ -62,15 +58,6 @@ export class LogInComponent {
     let emailLogin = this.loginForm.controls.email.value
     let passwordLogin = this.loginForm.controls.password.value
 
-
-    // localstorage
-    // let localData = JSON.parse(localStorage.getItem("LoginData"));
-
-    // let localData = JSON.parse(localStorage.getItem("token"));
-    
-
-    // let id 
-   
     this.authSer.getApi().subscribe((response)=>{
     let id : any
     let email : any 
@@ -83,19 +70,9 @@ export class LogInComponent {
       if(data){
         this.router.navigate(['/student', id])
         this.toastr.success("Login succesfully")
-        // this.router.navigate(['/student'])
-      
         const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-        // localData={email: emailLogin, password:passwordLogin, id:id};
-        // localStorage.setItem('LoginData', JSON.stringify(localData)); 
-        // const jwtToken = data.name
-
         localStorage.getItem("token")
         localStorage.setItem('token', jwtToken);
-        // localStorage.setItem('token', JSON.stringify(email));
-
-        // console.log(setlocal, " local data");
-        
       }else{
         this.toastr.error("You dont have account");
       }
@@ -104,7 +81,7 @@ export class LogInComponent {
 
  
 
-  signup(){
+  public signup(){
     this.router.navigate(['signup'])
   }
 }

@@ -21,15 +21,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   providers : [StudentService]
 })
 export class StudentEditComponent implements OnInit{
-  updatedUser:any
-  editedId:any
+  public updatedUser:any
+  public editedId:any
 
-  updatePhoneNumber : any
-  updateCountryCode : any
-  updatePhoneNum : any
+  public updatePhoneNumber : any
+  public updateCountryCode : any
+  public updatePhoneNum : any
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((ele:any)=>{
-      // console.log(ele)     
       this.editedId=ele.id
     })
 
@@ -37,49 +36,32 @@ export class StudentEditComponent implements OnInit{
       this.updatedUser=ele
       this.updatePhoneNumber = ele.PhoneNumber  
       console.log(this.updatePhoneNumber);
-           
-      console.log(ele,"d");
-
       let split = this.updatePhoneNumber.split(' ')
       this.updateCountryCode =  split[0]
       this.updatePhoneNum = split[1]
     })
-
-  
-    
   }
 
  
 
 
-  submitUserData:string=''
-  // cli(da:any){
-  //  this.submitUserData= da.srcElement.name
-  // }
+  public submitUserData:string=''
 
-  submitted :boolean=false
-  // checked : boolean = true
-  // clickOnCheck(){
-  // this.checked = !this.checked
-  // }
+  public submitted :boolean=false
 
-  checked : boolean = false
+  public checked : boolean = false
 
 
   //Phone number number input
-  onInputChange(event: Event): void {
+  public onInputChange(event: Event): void {
   
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
 
-    // Remove non-numeric characters using a regular expression
     const numericValue = inputValue.replace(/[^0-9]/g, '');
 
-    // Update the input field value with the cleaned numeric value
     inputElement.value = numericValue;
   }
-  // check = document.getElementById('checkId')
-  
   
 
   constructor (private studentSer : StudentService, private toastr: ToastrService, private router : Router,
@@ -88,10 +70,7 @@ export class StudentEditComponent implements OnInit{
     
   }
 
-  
-
-  // @ViewChild('checkId') checkId : ElementRef
-   checkboxClick(){
+  public checkboxClick(){
     this.checked = !this.checked
     let a = this.checked
     console.log(a);
@@ -99,7 +78,7 @@ export class StudentEditComponent implements OnInit{
   }
  
 
-  emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$'
+  public emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$'
 
   studentForm = new FormGroup({
     status : new FormControl(null,[Validators.required]),
@@ -119,42 +98,15 @@ export class StudentEditComponent implements OnInit{
     checkbox : new FormControl(null,[Validators.required])
   })  
 
-  // get phnoget(){
-  //   return this.studentForm.get('phno') as FormArray
-  // }
 
-  disableRemove : boolean = true
+  public disableRemove : boolean = true
 
-  addPhone(){
-    // this.disableRemove = false;
-    // (<FormArray>this.studentForm.get('phno')).push(new FormControl(''))
-
-    // const phoneArray = this.studentForm.get('phno') as FormArray
-
-
-
-    // if (phoneArray.length === 0) {
-    //   phoneArray.push(new FormControl(''));
-    // } else {
-    //   phoneArray.clear();
-    // }
-
-    // this.phnoget.push(new FormControl(''))
-  }
-
-  removePhone(ind:any){
-    // this.phnoget.removeAt(ind)
-  }
-
-
-  addEmail(){
+  public addEmail(){
     (this.studentForm.get('emailAnother') as FormArray).push(new FormControl(''))
   }
-  removeEmail(i:any){
+  public removeEmail(i:any){
     (this.studentForm.get('emailAnother') as FormArray).removeAt(i)
   }
-
-
 
   @ViewChild('statusView') statusView! : ElementRef 
   @ViewChild('firstnameView') firstnameView! : ElementRef
@@ -168,27 +120,20 @@ export class StudentEditComponent implements OnInit{
   @ViewChild('documentView') documentView! : ElementRef
   @ViewChild('addressView') addressView! : ElementRef
 
-
-  //validation
   get f (){
     return this.studentForm.controls
   }
 
+  public studentData : any;
 
-
-  studentData : any;
-
-  getData(){
+  public getData(){
     this.studentSer.getApi().subscribe((data)=>{
       this.studentData = data
     })
   }
 
-  updateData(){
+  public updateData(){
 
-  // id=this.studentForm.
-  
-    
     this.submitted=true
 
     if(this.studentForm.invalid){
@@ -201,72 +146,54 @@ export class StudentEditComponent implements OnInit{
     
     if(this.checked){
 
-   let data = {
-    status: this.studentForm.controls.status.value,
-    firstname: this.studentForm.controls.firstname.value,
-    lastname: this.studentForm.controls.lastname.value,
-    age: this.studentForm.controls.age.value,
-    email: this.studentForm.controls.email.value,
-    emailAnother: this.studentForm.controls.emailAnother.value,
-    allCountries: this.studentForm.controls.allCountries.value,
-    PhoneNumber : finalNumber,
-    pincode: this.studentForm.controls.pincode.value,
-    country: this.studentForm.controls.country.value,
-    state: this.studentForm.controls.state.value,
-    document: this.studentForm.controls.document.value,
-    address: this.studentForm.controls.address.value,
-    checkbox: this.studentForm.controls.checkbox.value,
-  };
+    let data = {
+      status: this.studentForm.controls.status.value,
+      firstname: this.studentForm.controls.firstname.value,
+      lastname: this.studentForm.controls.lastname.value,
+      age: this.studentForm.controls.age.value,
+      email: this.studentForm.controls.email.value,
+      emailAnother: this.studentForm.controls.emailAnother.value,
+      allCountries: this.studentForm.controls.allCountries.value,
+      PhoneNumber : finalNumber,
+      pincode: this.studentForm.controls.pincode.value,
+      country: this.studentForm.controls.country.value,
+      state: this.studentForm.controls.state.value,
+      document: this.studentForm.controls.document.value,
+      address: this.studentForm.controls.address.value,
+      checkbox: this.studentForm.controls.checkbox.value,
+  };   
 
       this.studentSer.updateApi(this.editedId, data).subscribe(() => {  
           this.getData();
         }
       );
-      
-      // this.router.navigateByUrl('student', this.editedId)
+
       this.router.navigate(['student',this.editedId])
       this.toastr.success("Data succesfully updated")
     
       this.submitted=false
-      // this.studentForm.reset()
+      this.studentForm.reset()
     }
     
 
     
   }
 
-  // cancelBtn(){
-  //   this.studentForm.reset()
-  // }
+  public isNotLoadingForDelete = true
+  public isLoadingForDelete = false
 
+  public documentBtnDesable = true 
 
-  isNotLoadingForDelete = true
-  isLoadingForDelete = false
-
-
-
-
-
-  
-  
-  documentBtnDesable = true 
-  open(){
+  public open(){
     this.documentBtnDesable=false    
     console.log(this.studentForm.controls.document.value);
   }
 
-  uploadDocument(value:any){
+  public uploadDocument(value:any){
     console.log(value);
   }
 
-
-   // localstorage
-  //  localData = JSON.parse(localStorage.getItem("LoginData"))||[];
-
-
-
-  //canDeactivate
-  onExit(){
+  public onExit(){
     if(this.statusView || this.firstnameView || this.lastnameView || this.ageView || this.emailView || this.phonePrimeView || 
       this.pincodeView|| this.addressView||this.documentView){
     return confirm("You have unsaved change. Do you really want to discard these change ?")
@@ -276,9 +203,7 @@ export class StudentEditComponent implements OnInit{
   }
 }
 
-
-
- anotherEmailInput(){
+ public anotherEmailInput(){
   let anotherEmailValue = this.studentForm.controls.emailAnother.value
 
   let primeEmailValu = this.studentForm.controls.email.value
@@ -290,21 +215,16 @@ export class StudentEditComponent implements OnInit{
 
 
 
-cancelEdit(){
+public cancelEdit(){
   this.router.navigate(['student',this.editedId])
 }
 
+public allState : string[] = [] ;
+public stateDisable : boolean = true
 
+public selectCountry(event:any){
 
-
-
-//select state by dropdown
-allState : string[] = [] ;
-stateDisable : boolean = true
-
-selectCountry(event:any){
-
-this.stateDisable = false
+  this.stateDisable = false
 
   if(event.target.value == 'India'){
     // alert(event.target.value);
@@ -316,8 +236,7 @@ this.stateDisable = false
     "Uttar Pradesh", "Uttarakhand", "West Bengal", 
     "Andaman and Nicobar Islands", "Chandigarh", 
     "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Lakshadweep", 
-    "Puducherry"]
-    
+    "Puducherry"] 
   }
   else if(event.target.value == 'Nepal'){
     // alert(event.target.value);=
@@ -338,7 +257,7 @@ this.stateDisable = false
 
 
 
-allCountries = [
+public allCountries = [
   { value: 'AF', desc: 'Afghanistan', mobile: '+93' },
   { value: 'AX', desc: 'Åland Islands', mobile: '+358' },
   { value: 'AL', desc: 'Albania', mobile: '+355' },
@@ -501,9 +420,9 @@ allCountries = [
   { value: 'MM', desc: 'Myanmar', mobile: '+95' },
 ];
 
-selectedCountryMobileCode: any;
+public selectedCountryMobileCode: any;
 
-onCountrySelect(event: any) {
+public onCountrySelect(event: any) {
   const countryCode = event.target.value;
   const selectedCountry = this.allCountries.find(
     (country) => country.value === countryCode
@@ -514,16 +433,5 @@ onCountrySelect(event: any) {
     this.selectedCountryMobileCode = '';
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 }

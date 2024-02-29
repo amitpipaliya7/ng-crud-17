@@ -26,16 +26,14 @@ export class StudentProfileComponent {
 
   constructor(private activatedRoute:ActivatedRoute, private authSer : AuthService, private spinner: NgxSpinnerService){}
 
-  MyProfileData:any= []
-  MyProfileId: any
+  public MyProfileData:any= []
+  public MyProfileId: any
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((ele:any)=>{
       this.MyProfileId = ele.id    
-    })
-    
+    })  
     this.authSer.GetMyProfileApi(this.MyProfileId).subscribe((ele:any)=>{
-      // console.log(ele);
-      // this.MyProfileData = ele
       this.MyProfileData.push(ele)
     })
 

@@ -62,63 +62,35 @@ export class StudentComponent implements OnInit {
   }
 
   public  submitUserData: string = '';
-  // cli(da:any){
-  //  this.submitUserData= da.srcElement.name
-  // }
 
-  submitted: boolean = false;
-  // checked : boolean = true
-  // clickOnCheck(){
-  // this.checked = !this.checked
-  // }
+  public submitted: boolean = false;
 
-  checked: boolean = false;
+  public checked: boolean = false;
 
   //Phone number number input
-  onInputChange(event: Event): void {
+  public onInputChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
-
-    // Remove non-numeric characters using a regular expression
     const numericValue = inputValue.replace(/[^0-9]/g, '');
-
-    // Update the input field value with the cleaned numeric value
     inputElement.value = numericValue;
   }
-  // check = document.getElementById('checkId')
 
-  studentId: any;
+  private studentId: any;
   ngOnInit(): void {
-    // this.spinner.show();
-
-    // setTimeout(() => {
-    //   /** spinner ends after 5 seconds */
-    //   this.spinner.hide();
-    // }, 5000);
     this.activatedRoute.params.subscribe((ele: any) => {
       console.log(ele);
       this.studentId = ele.id;
     });
-
-    // this.initializeModal();
     this.getData();
   }
 
-  // onItemSelect(item: any) {
-  //   console.log(item);
-  // }
-  // onSelectAll(items: any) {
-  //   console.log(items);
-  // }
-
-  // @ViewChild('checkId') checkId : ElementRef
-  checkboxClick() {
+  public checkboxClick() {
     this.checked = !this.checked;
     let a = this.checked;
     console.log(a);
   }
 
-  emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
+  public emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{3}$';
 
   studentForm = new FormGroup({
     status: new FormControl(null, [Validators.required]),
@@ -127,9 +99,6 @@ export class StudentComponent implements OnInit {
     age: new FormControl(null, [Validators.required,Validators.pattern('[0-9]+$'),]),
     email: new FormControl(null, [Validators.required,Validators.pattern(this.emailPattern), ]),
     emailAnother: new FormArray([]),
-    // emailAnother : new FormArray<any>([],[Validators.required,Validators.pattern(this.emailPattern)]),
-    // phnoPrime: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10),  Validators.pattern('[0-9]+$'),]),
-    // phno: new FormArray([]),
     allCountries: new FormControl('', Validators.required),
     countryCode: new FormControl('', Validators.required),
     cPhoneNum: new FormControl('', Validators.required),
@@ -145,100 +114,43 @@ export class StudentComponent implements OnInit {
     return this.studentForm.get('emailAnother') as FormArray;
   }
 
-  // get phnoget() {
-  //   return this.studentForm.get('phno') as FormArray;
-  // }
-
   disableRemove: boolean = true;
 
-  // addPhone() {
-  //   this.phnoget.push(new FormControl(''));
-  // }
-
-  // removePhone(ind: any) {
-  //   this.phnoget.removeAt(ind);
-  // }
-
-  addEmail() {
-    // (this.studentForm.get('emailAnother') as FormArray).push(new FormControl(''))
+  public addEmail() {
     this.emailAnotherGet.push(new FormControl(''));
   }
-  removeEmail(i: any) {
+  public removeEmail(i: any) {
     (this.studentForm.get('emailAnother') as FormArray).removeAt(i);
   }
 
-  // @ViewChild('id')  id : ElementRef
-  // id;
-  // @ViewChild('status')  status : ElementRef
-  // @ViewChild('firstname')  firstname : ElementRef
-  // @ViewChild('lastname')  lastname : ElementRef
-  // @ViewChild('age')  age : ElementRef
-  // @ViewChild('email')  email : ElementRef
-  // @ViewChild('phno')  phno : ElementRef
-  // @ViewChild('pincode')  pincode : ElementRef
-  // @ViewChild('address')  address : ElementRef
-
   public statusNg: string = '';
-  firstnameNg: any;
-  lastnameNg: any;
-  ageNg: any;
-  emailNg: any;
-  // phnoNg;
-  phnoPrimeNg: any;
-  pincodeNg: any;
-  addressNg: any;
-  idNg: any;
-  documentNg: any;
-  countryCodeNg: any;
-  cPhoneNumNg: any;
+  public firstnameNg: any;
+  public lastnameNg: any;
+  public ageNg: any;
+  public emailNg: any;
+  public phnoPrimeNg: any;
+  public pincodeNg: any;
+  public addressNg: any;
+  public idNg: any;
+  public documentNg: any;
+  public countryCodeNg: any;
+  public cPhoneNumNg: any;
 
-  //validation
   get f() {
     return this.studentForm.controls;
   }
 
-  // get statusVali(){
-  //   return this.studentForm.get('status')
-  // }
-  // get firstnameVali(){
-  //   return this.studentForm.get('firstname')
-  // }
-  // get lastnameVali(){
-  //   return this.studentForm.get('lastname')
-  // }
-  // get ageVali(){
-  //   return this.studentForm.get('age')
-  // }
-  // get phnoVali(){
-  //   return this.studentForm.get('phno')
-  // }
-  // get addressVali(){
-  //   return this.studentForm.get('address')
-  // }
-  // get pincodeVali(){
-  //   return this.studentForm.get('pincode')
-  // }
-  // get emailVali(){
-  //   return this.studentForm.get('email')
-  // }
-
-  studentData: any;
-  // studentData : studentModel[];
-  fullname: any;
-  getData() {
+  public studentData: any;
+  public fullname: any;
+  public getData() {
     this.studentSer.getApi().subscribe((data: any) => {
-      // this.studentData = data
-      // let fullname =  data.firstname.concat(data.lastname)
-      // this.fullname = fullname
       console.log(data, 'data');
-
       this.studentData = data;
     });
   }
 
-  onSelect(event: any) {
+  public onSelect(event: any) {
     console.log(event.target.value);
-
     if (event.target.value == 'logout') {
       this.spinner.show();
       setTimeout(() => {
@@ -247,10 +159,7 @@ export class StudentComponent implements OnInit {
         this.toastr.success("You'r logout");
         localStorage.removeItem('token');
       }, 1000);
-      
-    } else if (event.target.value == 'myprofile') {
-      // this.router.navigateByUrl("/studentprofile")
-    } else if (event.target.value == 'changepassword') {
+    }else if (event.target.value == 'changepassword') {
       this.spinner.show();
       setTimeout(() => {
         this.spinner.hide();
@@ -259,24 +168,18 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  submitData() {
+  public submitData() {
     this.submitted = true;
 
     if (this.studentForm.invalid) {
       return;
     }
 
-    
     let countryCode = this.studentForm.get('countryCode')?.value;
     let cPhoneNum = this.studentForm.get('cPhoneNum')?.value;
     let finalNumber = countryCode + ' ' + cPhoneNum;
 
     if (this.checked) {
-      // let data = {
-      //   number:final,
-      //   ...this.studentForm.value
-      // }
-
       let data = {
         status: this.studentForm.controls.status.value,
         firstname: this.studentForm.controls.firstname.value,
@@ -327,59 +230,40 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  // cancelBtn(){
-  //   this.studentForm.reset()
-  // }
-
-  isNotLoadingForDelete = true;
-  isLoadingForDelete = false;
+  public isNotLoadingForDelete = true;
+  public isLoadingForDelete = false;
 
   //first letter capital
-  capitalizeFirstLetter(value: string): string {
+  public capitalizeFirstLetter(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
   }
 
-  onFirstNameInputChange(event: Event) {
-    // this.firstnameNg = this.capitalizeFirstLetter(this.firstnameNg)
+  public onFirstNameInputChange(event: Event) {
 
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
 
-    // Remove non-numeric characters using a regular expression
     const numericValue = inputValue.replace(/[^a-zA-Z]/g, '');
 
-    // Update the input field value with the cleaned numeric value
     inputElement.value = numericValue;
   }
 
-  onLastNameInputChange(event: Event) {
-    // this.lastnameNg = this.capitalizeFirstLetter(this.lastnameNg)
+  public onLastNameInputChange(event: Event) {
 
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
 
-    // Remove non-numeric characters using a regular expression
     const numericValue = inputValue.replace(/[^a-zA-Z]/g, '');
 
-    // Update the input field value with the cleaned numeric value
     inputElement.value = numericValue;
   }
 
-  // @ViewChild('emailAnother') emailAnother :  ElementRef
-  checkForDuplicate() {
-    // if (this.emailNg && this.emailAnother && this.emailNg === this.emailAnother) {
-    //   alert('Duplicate value');
-    // }
-  }
 
-  onAddressInputChange() {
-    // this.addressNg = this.capitalizeFirstLetter(this.addressNg)
-  }
 
-  acceptedFileTypes: string = '';
-  documentBtnDesable: boolean = true;
-  open(event: any) {
-    // console.log(event.target.value);
+
+  public acceptedFileTypes: string = '';
+  public documentBtnDesable: boolean = true;
+  public open(event: any) {
 
     this.documentBtnDesable = false;
 
@@ -393,24 +277,21 @@ export class StudentComponent implements OnInit {
       default:
         this.acceptedFileTypes = '';
         this.documentBtnDesable = true;
-
-      // Reset to allow all file types if "Please select" is chosen
     }
   }
 
-  uploadDocument(value: any) {
+  public uploadDocument(value: any) {
     console.log(value);
   }
 
   //select state by dropdown
-  allState: string[] = [];
-  stateDisable: boolean = true;
+  public allState: string[] = [];
+  public stateDisable: boolean = true;
 
-  selectCountry(event: any) {
+  public selectCountry(event: any) {
     this.stateDisable = false;
 
     if (event.target.value == 'India') {
-      // alert(event.target.value);
       this.allState = [
         'Andhra Pradesh',
         'Arunachal Pradesh',
@@ -448,7 +329,6 @@ export class StudentComponent implements OnInit {
         'Puducherry',
       ];
     } else if (event.target.value == 'Nepal') {
-      // alert(event.target.value);=
       this.allState = [
         'Province No. 1',
         'Province No. 2',
@@ -459,7 +339,6 @@ export class StudentComponent implements OnInit {
         'Sudurpashchim Province',
       ];
     } else if (event.target.value == 'Shrilanka') {
-      // alert(event.target.value);=
       this.allState = [
         'Central',
         'Eastern',
@@ -477,9 +356,8 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  insert: boolean = true;
-  editBtn(data: any) {
-    // this.insert = false
+  public insert: boolean = true;
+  public editBtn(data: any) {
     console.log(data.id);
 
     Swal.fire({
@@ -507,23 +385,21 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  cancel() {
+  public cancel() {
     this.studentForm.reset();
-
     this.insert = true;
   }
 
   //search drodown
-  searchValueByName: any;
-  searchValueByEmail: any;
-  searchValueByPhone: any;
+  public searchValueByName: any;
+  public searchValueByEmail: any;
+  public searchValueByPhone: any;
 
-  searchByName: boolean = true;
-  searchByEmail: boolean = false;
-  searchByPhone: boolean = false;
-  onSelectSearch(event: any) {
+  public searchByName: boolean = true;
+  public searchByEmail: boolean = false;
+  public searchByPhone: boolean = false;
+  public onSelectSearch(event: any) {
     console.log(event.target.value);
-    // this.searchValue = event.target.value
 
     if (event.target.value == 'name') {
       this.searchByName = true;
@@ -545,8 +421,8 @@ export class StudentComponent implements OnInit {
   }
 
   //disable all table
-  isTableDisabled: boolean = false;
-  disableAll(event: any) {
+  public isTableDisabled: boolean = false;
+  public disableAll(event: any) {
     this.checked = !this.checked;
     if (event.target.checked == true) {
       this.isTableDisabled = true;
@@ -556,8 +432,8 @@ export class StudentComponent implements OnInit {
   }
 
   //disable chexbox
-  disabledRows: { [id: number]: boolean } = {};
-  disableCheckboxClick(event: any, id: any) {
+  public disabledRows: { [id: number]: boolean } = {};
+  public disableCheckboxClick(event: any, id: any) {
     this.checked = !this.checked;
 
     this.disabledRows[id] = event.target.checked;
@@ -567,16 +443,14 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  key = 'id';
-  reverse: boolean = false;
-  sort(key: any) {
+  public key = 'id';
+  public reverse: boolean = false;
+  public sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;
   }
 
-  deleteBtn(id: any) {
-    // console.log(id);
-
+  public deleteBtn(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -603,7 +477,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  logo() {
+  public logo() {
     Swal.fire({
       title: 'Welcom to my website.',
       width: 600,
@@ -619,7 +493,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  myProfile() {
+  public myProfile() {
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
@@ -628,7 +502,7 @@ export class StudentComponent implements OnInit {
   }
 
   //canDeactivate
-  onExit() {
+  public onExit() {
     if (
       this.statusNg ||
       this.firstnameNg ||
@@ -649,32 +523,23 @@ export class StudentComponent implements OnInit {
   }
 
   //pagination
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 5;
-  tableSizes: any = [5, 10, 15, 20];
+  public page: number = 1;
+  public count: number = 0;
+  public tableSize: number = 5;
+  public tableSizes: any = [5, 10, 15, 20];
 
-  // dataOfUserApi
-  // getDataOfUser(){
-  //   this.studentSer.getApiOfUser().subscribe((data)=>{
-  //     this.dataOfUserApi = data
-  //   })
-  // }
-
-  onTableDataChange(event: any) {
+  public onTableDataChange(event: any) {
     this.page = event;
-    // this.getDataOfUser()
     this.getData();
   }
 
-  onTableSizeChange(event: any) {
+  public onTableSizeChange(event: any) {
     this.tableSize = event.target.value;
     this.page = 1;
-    // this.getDataOfUser()
     this.getData();
   }
 
-  allCountries = [
+  public allCountries = [
     { value: 'AF', desc: 'Afghanistan', mobile: '+93' },
     { value: 'AX', desc: 'Åland Islands', mobile: '+358' },
     { value: 'AL', desc: 'Albania', mobile: '+355' },
@@ -837,9 +702,9 @@ export class StudentComponent implements OnInit {
     { value: 'MM', desc: 'Myanmar', mobile: '+95' },
   ];
 
-  selectedCountryMobileCode: any;
+  public selectedCountryMobileCode: any;
 
-  public  onCountrySelect(event: any) {
+  public onCountrySelect(event: any) {
     const countryCode = event.target.value;
     const selectedCountry = this.allCountries.find(
       (country) => country.value === countryCode
