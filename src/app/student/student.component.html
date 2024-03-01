@@ -3,8 +3,8 @@
 </ngx-spinner>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" (click)="logo()" style="cursor: pointer;">Student Form</a>
-
+      <i class="fa fa-bars" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></i>
+      <a class="navbar-brand space" (click)="logo()" style="cursor: pointer;">Student Form</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         </ul>
@@ -14,8 +14,11 @@
                 <option value="changepassword">Change Password</option>
                 <option value="logout">Log out</option>
               </select> 
-            <div title="My Profile">
-                <svg (click)="myProfile()" style="cursor: pointer; "   xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <div>
+                <svg (click)="myProfile()" style="cursor: pointer; "  xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"
+                          data-bs-toggle="tooltip" data-bs-placement="bottom"
+                          data-bs-custom-class="custom-tooltip"
+                          title="My Profile">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                 </svg>
@@ -24,7 +27,48 @@
       </div>
     </div>
   </nav>
-<section  style="background-color: #9A616D;">
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="fixed-bottom">
+        <section id="pmd-main">
+              <ul class="nav flex-column pmd-sidebar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" style="cursor: pointer;" (click)="onChangePasswordBtn()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                          <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                        </svg>
+                        <span class="media-body space">Change password</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" style="cursor: pointer;" (click)="myProfile()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                          <span class="media-body space">My Profile</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" style="cursor: pointer;" (click)="onLogoutBtn()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                          <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                        </svg>
+                        <span class="media-body space ">Log out</span>
+                      </a>
+                  </li>
+              </ul>
+      </section>
+    </div>    
+  </div>
+</div>
+
+<section  class="bg-page">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -35,7 +79,16 @@
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                     <span class="h1 fw-bold mb-0">Student form</span>
                   </div>
-           
+                  <p class="d-inline-flex gap-1">
+                    <a   data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Why this form ?
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      "Completing your personal detail form is essential for us to provide you with the best possible support and services. Your information helps us ensure accurate record-keeping, communicate important updates, and provide personalized assistance when needed. Rest assured, your data is kept confidential and used only for official purposes. Thank you for taking the time to fill out the form."
+                    </div>
+                  </div>
                   <div class="form-outline mb-4">
                     <select formControlName="status" name="status" class="status" [(ngModel)]="statusNg">
                         <option  value="">Please select</option>
@@ -70,7 +123,10 @@
                   <label class="form-label" for="form2Example27">Email address</label>
                   <div class="form-outline mb-4 d-flex">
                     <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" formControlName="email" ngModel [(ngModel)]="emailNg" />
-                    <button type="button" class="btn btn-primary space"  (click)="addEmail()">Add more email</button>
+                    <button type="button" class="btn btn-primary space"  (click)="addEmail()"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Add more email, If you want to add more email">Add more email</button>
                   </div>
                   <span *ngIf="submitted" style="color: red">invalid Email</span>
                   <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
@@ -145,7 +201,7 @@
                     <span *ngIf="f.document.invalid && f.document.touched" style="color: red;">Please select document</span>
                     <span *ngIf="submitted" style="color: red;">Please select document</span>
                   </div>
-                
+    
                   <div class="form-outline mb-4">
                     <textarea class="form-control" cols="30" formControlName="address" rows="5" placeholder="Enter Address"  ngModel [(ngModel)]="addressNg" ></textarea>
                     <span *ngIf="f.address?.invalid && f.address?.touched" style="color: red">invalid Address</span>
@@ -169,9 +225,8 @@
       </div>
     </div>
 </section>
-
 <!-- table -->
-<section  style="background-color: #9A616D;">
+<section  class="bg-page">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10 ">
           <div class="card shadow" style="border-radius: 1rem;">
@@ -227,9 +282,9 @@
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.age}}</td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.email}} <br/></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.PhoneNumber}}</td>  
-                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.pincode}}</p></td>
-                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.country}}</p></td>
-                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p >{{std.state}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p>{{std.pincode}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p>{{std.country}}</p></td>
+                            <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><p>{{std.state}}</p></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.address }}</td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-danger" (click)="deleteBtn(std.id)">Delete</Button></td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }"><Button class="btn btn-success" (click)="editBtn(std)">Edit</Button></td>

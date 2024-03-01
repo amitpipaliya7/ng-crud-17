@@ -13,6 +13,8 @@ import { EmailFilterPipe } from '../pipe/email-filter.pipe';
 import { PhoneFilterPipe } from '../pipe/phone-filter.pipe';
 import { AddressPipe } from '../pipe/address.pipe';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-student',
   standalone: true,
@@ -27,7 +29,7 @@ import { AddressPipe } from '../pipe/address.pipe';
     PhoneFilterPipe,
     AddressPipe,
     NgxPaginationModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule
   ],
   providers: [
     StudentService,
@@ -78,6 +80,12 @@ export class StudentComponent implements OnInit {
       this.studentId = ele.id;
     });
     this.getData();
+
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   }
 
   public checkboxClick() {
@@ -113,7 +121,10 @@ export class StudentComponent implements OnInit {
   disableRemove: boolean = true;
 
   public addEmail() {
-    this.emailAnotherGet.push(new FormControl(''));
+    if (this.emailAnotherGet.length < 5) {
+      this.emailAnotherGet.push(new FormControl(''));
+    }
+    // this.emailAnotherGet.push(new FormControl(''));
   }
   public removeEmail(i: any) {
     (this.studentForm.get('emailAnother') as FormArray).removeAt(i);
@@ -162,6 +173,24 @@ export class StudentComponent implements OnInit {
         this.router.navigate(['/changepassword', this.studentId]);
       }, 1000);
     }
+  }
+
+  public onLogoutBtn(){
+    this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+        this.router.navigateByUrl('/login');
+        this.toastr.success("You'r logout");
+        localStorage.removeItem('token');
+      }, 1000);
+  }
+
+  public onChangePasswordBtn(){
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigate(['/changepassword', this.studentId]);
+    }, 1000);
   }
 
   public submitData() {
@@ -709,3 +738,10 @@ export class StudentComponent implements OnInit {
     }
   }
 }
+
+
+
+
+
+
+
