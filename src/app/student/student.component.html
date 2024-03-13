@@ -96,28 +96,28 @@
                         <option value="Mrs">Mrs </option>
                     </select>
                     <span *ngIf="f.status?.invalid && f.status.touched" style="color: red">Please select</span>
-                    <span *ngIf="submitted" style="color: red">Please select</span>
+                    <span *ngIf="submitted && f.status?.invalid" style="color: red">Please select</span>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17">First name</label>
                     <input id="form2Example17" class="form-control form-control-lg" type="text" formControlName="firstname" required ngModel [(ngModel)]="firstnameNg" (input)="onFirstNameInputChange($event)" />
-                    <span *ngIf="submitted " style="color: red">invalid First Name</span>
+                    <span *ngIf="submitted && f.firstname?.invalid " style="color: red">invalid First Name</span>
                     <span *ngIf=" f.firstname?.invalid && f.firstname?.touched" style="color: red">invalid First Name</span>
                   </div>
                   
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17">Last name</label>
                     <input id="form2Example17" class="form-control form-control-lg" type="text" formControlName="lastname"   ngMode [(ngModel)]="lastnameNg" (input)="onLastNameInputChange($event)"/>
-                    <span *ngIf="f.lastname?.invalid && f.lastname?.touched || submitted" style="color: red">invalid Last Name</span>
-                    <span *ngIf="submitted" style="color: red">invalid Last Name</span>
+                    <span *ngIf="f.lastname?.invalid && f.lastname?.touched " style="color: red">invalid Last Name</span>
+                    <span *ngIf="submitted && f.lastname.invalid" style="color: red">invalid Last Name</span>
                   </div>
                   
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17" >Age</label>
                     <input  id="form2Example17" class="form-control form-control-lg" type="number" formControlName="age" ngModel  [(ngModel)]="ageNg"/>
                     <span *ngIf="f.age?.invalid && f.age?.touched" style="color: red">invalid Age</span>
-                    <span *ngIf="submitted" style="color: red">invalid Age</span>
+                    <span *ngIf="submitted && f.age?.invalid" style="color: red">invalid Age</span>
                   </div>
 
                   <label class="form-label" for="form2Example27">Email address</label>
@@ -128,7 +128,7 @@
                     data-bs-custom-class="custom-tooltip"
                     title="Add more email, If you want to add more email">Add more email</button>
                   </div>
-                  <span *ngIf="submitted" style="color: red">invalid Email</span>
+                  <span *ngIf="submitted && f.email?.invalid" style="color: red">invalid Email</span>
                   <span *ngIf="f.email?.invalid && f.email?.touched" style="color: red">invalid Email</span>
 
                   <div class="form-outline mb-4">
@@ -136,7 +136,7 @@
                         <ng-container *ngFor="let e of emailAnotherGet.controls; let i=index">
                           <div class="form-outline mb-4 d-flex">
                             <input class=" form-control form-control-lg" type="text" formControlName="{{i}}"  #emailAnother  placeholder="Enter another email.">
-                            <span *ngIf="submitted" style="color: red">invalid Email</span>
+                            <span *ngIf="submitted && f.emailAnother?.invalid" style="color: red">invalid Email</span>
                             <span *ngIf="f.emailAnother?.invalid && f.emailAnother?.touched" style="color: red">invalid Email</span>    
                             <button type="button" (click)="removeEmail(i)" class="btn btn-danger space">Remove</button>
                           </div>
@@ -150,7 +150,7 @@
                         <option *ngFor="let item of allCountries" [value]="item.value" >{{ item.desc }}</option>
                     </select>
                     <span *ngIf="f.allCountries.invalid && f.allCountries.touched" style="color: red;" class="space">Please select country</span>
-                    <span *ngIf="submitted" style="color: red" class="mt-20">Please select country</span>
+                    <span *ngIf="submitted && f.allCountries.invalid" style="color: red" class="mt-20">Please select country</span>
                   </div>
                   
                   <label class="form-label" for="form2Example27">Phone number</label>
@@ -159,14 +159,14 @@
                       <input type="text" id="form2Example27" class="form-control form-control-lg space" type="text" formControlName="cPhoneNum" (input)="onInputChange($event)" 
                       maxlength="10" minlength="10" />
                     <span *ngIf="f.cPhoneNum.invalid && f.cPhoneNum.touched" style="color: red;" class="space">Invalid phone number</span>
-                    <span *ngIf="submitted" style="color: red" class="mt-20">Invalid phone number</span>
+                    <span *ngIf="submitted && f.cPhoneNum.invalid" style="color: red" class="mt-20">Invalid phone number</span>
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Pincode  </label>
                     <input type="text" id="form2Example27" class="form-control form-control-lg" type="text" (input)="onInputChange($event)" formControlName="pincode" 
                      maxlength="6" minlength="6"  ngModel [(ngModel)]="pincodeNg"/>
                     <span *ngIf="f.pincode?.invalid && f.pincode?.touched" style="color: red">invalid Pincode </span>
-                    <span *ngIf="submitted" style="color: red">invalid Pincode </span>
+                    <span *ngIf="submitted && f.pincode?.invalid" style="color: red">invalid Pincode </span>
                   </div>
 
                   <div class="form-outline mb-4 d-flex">
@@ -177,7 +177,7 @@
                             <option value="Shrilanka">Shrilanka</option>
                         </select>
                         <span *ngIf="f.country.invalid && f.country.touched" style="color: red;" class="space">Please select country</span>
-                        <span *ngIf="submitted" style="color: red" class="mt-20">Please select country</span>
+                        <span *ngIf="submitted && f.country.invalid" style="color: red" class="mt-20">Please select country</span>
         
                         <div [ngClass]="{ 'disabled-div': stateDisable }" class="space" >
                           <select  name="state" class="status"  formControlName="state">
@@ -185,7 +185,7 @@
                               <option *ngFor="let states of allState" [value]="states" >{{ states }}</option>
                           </select>
                           <span *ngIf="f.state.invalid && f.state.touched" style="color: red;">Please select state</span>
-                          <span *ngIf="submitted" style="color: red">Please select state</span>
+                          <span *ngIf="submitted && f.state.invalid" style="color: red">Please select state</span>
                         </div>
                       </div>
 
@@ -199,13 +199,13 @@
                     <input type="file" class="form-control form-control-lg w-50  space status " formControlName="document" (click)="uploadDocument(studentForm.controls.document.value)" 
                     [(ngModel)]="documentNg" accept="{{acceptedFileTypes}}" [ngStyle]="{'pointer-events': documentBtnDesable ? 'none' : 'auto', 'opacity': documentBtnDesable ? 0.5 : 1}"> 
                     <span *ngIf="f.document.invalid && f.document.touched" style="color: red;">Please select document</span>
-                    <span *ngIf="submitted" style="color: red;">Please select document</span>
+                    <span *ngIf="submitted && f.document.invalid" style="color: red;">Please select document</span>
                   </div>
     
                   <div class="form-outline mb-4">
                     <textarea class="form-control" cols="30" formControlName="address" rows="5" placeholder="Enter Address"  ngModel [(ngModel)]="addressNg" ></textarea>
                     <span *ngIf="f.address?.invalid && f.address?.touched" style="color: red">invalid Address</span>
-                    <span *ngIf="submitted" style="color: red">invalid Address</span>
+                    <span *ngIf="submitted && f.address?.invalid" style="color: red">invalid Address</span>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -225,6 +225,7 @@
       </div>
     </div>
 </section>
+<div>
 <!-- table -->
 <section  class="bg-page">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -253,7 +254,7 @@
                             <th>No</th>
                             <th>Id</th>
                             <th>Mr/Mrs</th>
-                            <th  (click)="sort('id')" style="width: 170px;"> Full name <i class="sa fa-sort"  style="float: right; margin-top: 4px;"></i></th>
+                            <th (click)="sort('id')" style="width: 170px;"> Full name <i class="sa fa-sort"  style="float: right; margin-top: 4px;"></i></th>
                             <th>Age</th>
                             <th>Email</th>
                             <th>Phone no</th>
@@ -273,7 +274,7 @@
                         itemsPerPage : tableSize,
                         currentPage : page,
                         totalItems : count  
-                        } ;  let i = index ">
+                        } ; let i = index ">
                         <tr>
                             <td>{{i}}</td>
                             <td [ngClass]="{ 'disabled-row': disabledRows[std.id] }">{{std.id}}</td>    
@@ -291,17 +292,17 @@
                             <td style="text-align: center;"><input type="checkbox" (change)="disableCheckboxClick($event, std.id)" ></td>
                         </tr>
                     </tbody>
+                    3
                   </table>
-                  <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                <p>Total user : {{totalUser}}</p>
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                 </pagination-controls>
                 
                 <select (change)="onTableSizeChange($event)">
                     <option *ngFor="let size of tableSizes"> {{size}}</option>
                 </select>
-
               </div>
           </div>
         </div>
       </div>
 </section>
-

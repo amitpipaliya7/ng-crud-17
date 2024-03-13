@@ -40,16 +40,9 @@
 //     border: none;
 //     box-shadow: 4px 4px 4px #888888;
 //   }
-
+  
 .status {
-    // width: 100%;
-    // padding: 10px;
-    // box-sizing: border-box;
-    // border: 1px solid #ccc;
-    // border-radius: 4px;
-    // box-shadow: 2px 2px 8px #888888;
-    // border: none;
-     width: 10vw;
+    width: 10vw;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -131,7 +124,6 @@
     text-align: center;
   }
 
-
    .check input{
     padding: 10px;
     box-sizing: border-box;
@@ -140,10 +132,6 @@
     border: none;
   }
   
-
-  // loader
-  /* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 30px;
   aspect-ratio: 1;
@@ -162,7 +150,7 @@ iv mat-select {
 
 /* Dropdown positioned upwards when inside a nav */
 nav mat-select {
-  margin-bottom: 10px; /* Adjust as needed */
+  margin-bottom: 10px; 
   margin-left: 50px;
 }
 
@@ -180,7 +168,6 @@ nav mat-select {
   opacity: 0.5; 
 }
 
-
 .sa{
     /* display: inline-block; */
     font-family: FontAwesome;
@@ -189,9 +176,7 @@ nav mat-select {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
-
 
 .space{
   margin-left: 24px;
@@ -201,3 +186,6 @@ nav mat-select {
   width: 70px;
   height: 50px;
 }
+
+
+

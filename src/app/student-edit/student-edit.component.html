@@ -6,7 +6,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
 <section  style="background-color: #9A616D;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -69,7 +69,7 @@
                     
                   <label class="form-label" for="form2Example27">Phone number</label>
                   <div class="form-outline mb-4 d-flex " >
-                        <input type="text" id="form2Example27" class="form-control inputsqure" type="text"  formControlName="countryCode" [(ngModel)]="selectedCountryMobileCode" readonly />
+                        <input type="text" id="form2Example27" class="form-control inputsqure" type="text"  formControlName="countryCode" [(ngModel)]="updateCountryCode" readonly />
                         <input type="text" id="form2Example27" class="form-control form-control-lg space" type="text" formControlName="cPhoneNum" (input)="onInputChange($event) " 
                         maxlength="10" minlength="10" [(ngModel)]="updatePhoneNum"/>
                       <span *ngIf="f.cPhoneNum.invalid && f.cPhoneNum.touched" style="color: red;" class="space">Invalid phone number</span>

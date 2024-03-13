@@ -12,9 +12,8 @@ export class PhoneFilterPipe implements PipeTransform {
     }
     else{
       return value.filter((ele:any)=>{
-        return ele.phnoPrime.includes(args)
+        return ele.PhoneNumber.includes(args)
       })
     }
   }
-
 }

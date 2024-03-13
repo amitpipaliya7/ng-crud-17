@@ -65,6 +65,8 @@ export class StudentComponent implements OnInit {
 
   public checked: boolean = false;
 
+  public totalUser =''
+
   //Phone number number input
   public onInputChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -102,7 +104,7 @@ export class StudentComponent implements OnInit {
     lastname: new FormControl(null, [Validators.required,Validators.pattern('[A-Za-z]+$'),]),
     age: new FormControl(null, [Validators.required,Validators.pattern('[0-9]+$'),]),
     email: new FormControl(null, [Validators.required,Validators.pattern(this.emailPattern), ]),
-    emailAnother: new FormArray([]),
+    emailAnother: new FormArray([]),  
     allCountries: new FormControl('', Validators.required),
     countryCode: new FormControl('', Validators.required),
     cPhoneNum: new FormControl('', Validators.required),
@@ -118,6 +120,7 @@ export class StudentComponent implements OnInit {
     return this.studentForm.get('emailAnother') as FormArray;
   }
 
+  
   disableRemove: boolean = true;
 
   public addEmail() {
@@ -149,10 +152,12 @@ export class StudentComponent implements OnInit {
 
   public studentData: any;
   public fullname: any;
+
   public getData() {
     this.studentSer.getApi().subscribe((data: any) => {
       console.log(data, 'data');
       this.studentData = data;
+      this.totalUser = data.length
     });
   }
 
@@ -737,11 +742,12 @@ export class StudentComponent implements OnInit {
       this.selectedCountryMobileCode = '';
     }
   }
+
+
+
+
+
+
+
+  
 }
-
-
-
-
-
-
-
